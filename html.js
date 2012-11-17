@@ -6,10 +6,28 @@
  *  Using: CoffeeScript and lightly based on web2py html.py
  */
 
-var A, DIV, H1, H2, H3, H4, H5, IMG, LI, P, SMALL, SPAN, UL, XML,
+var A, DIV, H1, H2, H3, H4, H5, IMG, LI, P, SMALL, SPAN, UL, XML, type,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     __slice = [].slice;
+
+type = function(obj) {
+    var classToType, myClass, name, _i, _len, _ref;
+    if (obj === void 0 || obj === null) {
+        return String(obj);
+    }
+    classToType = new Object;
+    _ref = "Boolean Number String Function Array Date RegExp".split(" ");
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        name = _ref[_i];
+        classToType["[object " + name + "]"] = name.toLowerCase();
+    }
+    myClass = Object.prototype.toString.call(obj);
+    if (myClass in classToType) {
+        return classToType[myClass];
+    }
+    return "object";
+};
 
 XML = (function() {
 
@@ -22,7 +40,8 @@ XML = (function() {
             this.selfclose = true;
             this.tag = this.tag.slice(0, -1);
         }
-        this._convert_attributes(attributes);
+        this._convert_attributes();
+        this._convert_content();
     }
 
     XML.prototype._convert_attributes = function() {
@@ -37,18 +56,18 @@ XML = (function() {
             }
             return _results;
         }).call(this);
-        return this.converted_attributes = " " + values.join(" ");
+        return this.converted_attributes = this.attributes ? " " + (values.join(" ")) : "";
     };
 
-    XML.prototype.append = function(value) {
-        return this.content += value;
+    XML.prototype._convert_content = function() {
+        return this.converted_content = type(this.content) === 'object' ? this.content.xml() : this.content;
     };
 
     XML.prototype.xml = function() {
         if (this.selfclose === true) {
             return "<" + this.tag + this.converted_attributes + "/>";
         } else if (this.selfclose === false) {
-            return "<" + this.tag + this.converted_attributes + ">" + this.content + "</" + this.tag + ">";
+            return "<" + this.tag + this.converted_attributes + ">" + this.converted_content + "</" + this.tag + ">";
         }
     };
 

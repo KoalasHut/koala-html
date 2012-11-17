@@ -1,24 +1,38 @@
+# Type correction
+type = (obj) ->
+  if obj == undefined or obj == null
+    return String obj
+  classToType = new Object
+  for name in "Boolean Number String Function Array Date RegExp".split(" ")
+    classToType["[object " + name + "]"] = name.toLowerCase()
+  myClass = Object.prototype.toString.call obj
+  if myClass of classToType
+    return classToType[myClass]
+  return "object"
+
+# Base class
 class XML
   constructor: (@tag, @content, @attributes) ->
     @selfclose = off
     if @tag[-1..] is '/'
       @selfclose = on
       @tag = @tag[..-2]
-    @_convert_attributes attributes
+    @_convert_attributes()
+    @_convert_content()
 
   _convert_attributes: ->
     values = for key, value of @attributes
       "#{key}=\"#{value}\""
-    @converted_attributes = " " + values.join " "
+    @converted_attributes = if @attributes then " #{values.join " "}" else ""
 
-  append: (value) ->
-    @content += value
+  _convert_content: ->
+    @converted_content = if type(@content) is 'object' then @content.xml() else @content
 
   xml: ->
     if @selfclose is on
       "<#{@tag}#{@converted_attributes}/>"
     else if @selfclose is off
-      "<#{@tag}#{@converted_attributes}>#{@content}</#{@tag}>"
+      "<#{@tag}#{@converted_attributes}>#{@converted_content}</#{@tag}>"
 
 # Now the childs
 
@@ -73,5 +87,3 @@ class SMALL extends XML
 class IMG extends XML
   constructor: (args...) ->
     super "img/", null, args...
-
-alert new IMG({src: 'minha/imagem'}).xml()
