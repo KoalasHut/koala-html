@@ -1,21 +1,11 @@
-/*
- *  Project: Koala's Hut
- *  Description: HTML entities helper
- *  Author: Diego Yungh
- *  License: MIT - http://www.opensource.org/licenses/mit-license.php
- *  Using: CoffeeScript and lightly based on web2py html.py
- */
-
 var A, DIV, H1, H2, H3, H4, H5, IMG, LI, P, SMALL, SPAN, UL, XML, type,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-    __slice = [].slice;
+    __slice = Array.prototype.slice,
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
 type = function(obj) {
     var classToType, myClass, name, _i, _len, _ref;
-    if (obj === void 0 || obj === null) {
-        return String(obj);
-    }
+    if (obj === void 0 || obj === null) return String(obj);
     classToType = new Object;
     _ref = "Boolean Number String Function Array Date RegExp".split(" ");
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -23,25 +13,24 @@ type = function(obj) {
         classToType["[object " + name + "]"] = name.toLowerCase();
     }
     myClass = Object.prototype.toString.call(obj);
-    if (myClass in classToType) {
-        return classToType[myClass];
-    }
+    if (myClass in classToType) return classToType[myClass];
     return "object";
 };
 
 XML = (function() {
 
-    function XML(tag, content, attributes) {
+    function XML() {
+        var attributes, content, tag;
+        tag = arguments[0], attributes = arguments[1], content = 3 <= arguments.length ? __slice.call(arguments, 2) : [];
         this.tag = tag;
-        this.content = content;
         this.attributes = attributes;
+        this.content = content;
         this.selfclose = false;
         if (this.tag.slice(-1) === '/') {
             this.selfclose = true;
             this.tag = this.tag.slice(0, -1);
         }
-        this._convert_attributes();
-        this._convert_content();
+        if (!this.attributes) this.attributes = {};
     }
 
     XML.prototype._convert_attributes = function() {
@@ -52,6 +41,7 @@ XML = (function() {
             _results = [];
             for (key in _ref) {
                 value = _ref[key];
+                value = type(value) === 'array' ? value.join(" ") : value;
                 _results.push("" + key + "=\"" + value + "\"");
             }
             return _results;
@@ -60,12 +50,29 @@ XML = (function() {
     };
 
     XML.prototype._convert_content = function() {
-        return this.converted_content = type(this.content) === 'object' ? this.content.xml() : this.content;
+        var c, contents;
+        contents = (function() {
+            var _i, _len, _ref, _results;
+            _ref = this.content;
+            _results = [];
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                c = _ref[_i];
+                if (type(c) === 'object') {
+                    _results.push(c.xml());
+                } else {
+                    _results.push(c);
+                }
+            }
+            return _results;
+        }).call(this);
+        return this.converted_content = contents.join(' ');
     };
 
     XML.prototype.xml = function() {
+        this._convert_attributes();
+        this._convert_content();
         if (this.selfclose === true) {
-            return "<" + this.tag + this.converted_attributes + "/>";
+            return "<" + this.tag + this.converted_attributes + "/&gt;";
         } else if (this.selfclose === false) {
             return "<" + this.tag + this.converted_attributes + ">" + this.converted_content + "</" + this.tag + ">";
         }

@@ -12,25 +12,33 @@ type = (obj) ->
 
 # Base class
 class XML
-  constructor: (@tag, @content, @attributes) ->
+  constructor: (@tag, @attributes, @content...) ->
     @selfclose = off
     if @tag[-1..] is '/'
       @selfclose = on
       @tag = @tag[..-2]
-    @_convert_attributes()
-    @_convert_content()
+    # Attributes
+    if not @attributes
+      @attributes = {}
 
   _convert_attributes: ->
     values = for key, value of @attributes
+      value = if type(value) is 'array' then value.join " " else value
       "#{key}=\"#{value}\""
     @converted_attributes = if @attributes then " #{values.join " "}" else ""
 
   _convert_content: ->
-    @converted_content = if type(@content) is 'object' then @content.xml() else @content
+    contents = for c in @content
+      if type(c) is 'object' then c.xml() else c
+    @converted_content = contents.join ' '
 
   xml: ->
+    # Transform attributes
+    @_convert_attributes()
+    @_convert_content()
+    # Render
     if @selfclose is on
-      "<#{@tag}#{@converted_attributes}/>"
+      "<#{@tag}#{@converted_attributes}/&gt;"
     else if @selfclose is off
       "<#{@tag}#{@converted_attributes}>#{@converted_content}</#{@tag}>"
 
