@@ -17,6 +17,7 @@ class XML
     if @tag[-1..] is '/'
       @selfclose = on
       @tag = @tag[..-2]
+      @content = ''
     # Attributes
     if not @attributes
       @attributes = {}
@@ -38,7 +39,7 @@ class XML
     @_convert_content()
     # Render
     if @selfclose is on
-      "<#{@tag}#{@converted_attributes}/&gt;"
+      "<#{@tag}#{@converted_attributes}/>;"
     else if @selfclose is off
       "<#{@tag}#{@converted_attributes}>#{@converted_content}</#{@tag}>"
 
@@ -94,4 +95,12 @@ class SMALL extends XML
 
 class IMG extends XML
   constructor: (args...) ->
-    super "img/", null, args...
+    super "img/", args...
+
+class TR extends XML
+  constructor: (args...) ->
+    super "tr", args...
+
+class TD extends XML
+  constructor: (args...) ->
+    super "td", args...

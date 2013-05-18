@@ -25,11 +25,12 @@ XML = (function() {
         this.tag = tag;
         this.attributes = attributes;
         this.content = content;
+
         this.selfclose = false;
         if (this.tag.slice(-1) === '/') {
             this.selfclose = true;
             this.tag = this.tag.slice(0, -1);
-        }
+            this.content = "";}
         if (!this.attributes) this.attributes = {};
     }
 
@@ -42,7 +43,10 @@ XML = (function() {
             for (key in _ref) {
                 value = _ref[key];
                 value = type(value) === 'array' ? value.join(" ") : value;
-                _results.push("" + key + "=\"" + value + "\"");
+                if(value)
+                    _results.push("" + key + "=\"" + value + "\"");
+                else if(!value)
+                    _results.push(key);
             }
             return _results;
         }).call(this);
@@ -72,7 +76,7 @@ XML = (function() {
         this._convert_attributes();
         this._convert_content();
         if (this.selfclose === true) {
-            return "<" + this.tag + this.converted_attributes + "/&gt;";
+            return "<" + this.tag + this.converted_attributes + "/>";
         } else if (this.selfclose === false) {
             return "<" + this.tag + this.converted_attributes + ">" + this.converted_content + "</" + this.tag + ">";
         }
@@ -257,9 +261,37 @@ IMG = (function(_super) {
     function IMG() {
         var args;
         args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-        IMG.__super__.constructor.apply(this, ["img/", null].concat(__slice.call(args)));
+        IMG.__super__.constructor.apply(this, ["img/"].concat(__slice.call(args)));
     }
 
     return IMG;
+
+})(XML);
+
+TR = (function(_super) {
+
+    __extends(TR, _super);
+
+    function TR() {
+        var args;
+        args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+        TR.__super__.constructor.apply(this, ["tr"].concat(__slice.call(args)));
+    }
+
+    return TR;
+
+})(XML);
+
+TD = (function(_super) {
+
+    __extends(TD, _super);
+
+    function TD() {
+        var args;
+        args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+        TD.__super__.constructor.apply(this, ["td"].concat(__slice.call(args)));
+    }
+
+    return TD;
 
 })(XML);
