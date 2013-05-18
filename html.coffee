@@ -25,7 +25,7 @@ class XML
   _convert_attributes: ->
     values = for key, value of @attributes
       value = if type(value) is 'array' then value.join " " else value
-      "#{key}=\"#{value}\""
+      if value then "#{key}=\"#{value}\"" else key
     @converted_attributes = if @attributes then " #{values.join " "}" else ""
 
   _convert_content: ->
