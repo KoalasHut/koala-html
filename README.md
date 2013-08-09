@@ -42,7 +42,10 @@ header.content.push(content);
 body.innerHTML = header.xml();
 ```
 
-There is a verobisty form of use, when the object get's long and you catch yourself iterating trough lots of tag.content[n]
+Update
+------
+
+There is one easier way to use, when the object get's long and you catch yourself iterating trough lots of tag.content[n]
 Let's pick the structure bellow:
 
 ```html
@@ -95,6 +98,9 @@ I thougth so
 The Future
 ==========
 
+ - Smart instantiation: Remove the need to add null as the first param when no attributes are passed
+ - Change render form: from string nodes to DOM 
+ 
 There's not much future to it, since I saw jade, but I think jade doesn't help much when you want to process HTML as a javascript object...
 
 Considerations
