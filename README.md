@@ -77,18 +77,20 @@ var structure =
             new SMALL()));
 // Edit            
 // First Column
-structure.div.div[0].img.src(data.image);
-structure.div.div[0].img.alt(data.title);
+structure.div[0].img.src(data.image);
+structure.div[0].img.alt(data.title);
 // Second Column
-structure.div.div[1].b.text(data.title);
-structure.div.div[1].p.text(data.description);
+structure.div[1].b.text(data.title);
+structure.div[1].p.text(data.description);
 // Third Column
-structure.div.div[2].h3.text(data.header);
-structure.div.div[2].small.text(data.smallText);
+structure.div[2].h3.text(data.header);
+structure.div[2].small.text(data.smallText);
 
 // Print
 body.innerHTML = structure.xml();
 ```
+Much easier isn't?
+I thougth so
 
 The Future
 ==========
