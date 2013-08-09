@@ -42,6 +42,53 @@ header.content.push(content);
 body.innerHTML = header.xml();
 ```
 
+There is a verobisty form of use, when the object get's long and you catch yourself iterating trough lots of tag.content[n]
+Let's pick the structure bellow:
+
+```html
+<div class="row event first">
+    <div class="small-3 columns" align="center">
+        <img src="" width="30" alt="">
+    </div>
+    <div class="small-6 columns">
+        <b></b>
+        <p></p>
+    </div>
+    <div class="small-3 columns">
+        <h3></h3>
+        <small></small>
+    </div>
+</div>
+```
+
+Imagine populating it whith JSON data received from somewhere
+
+```javascript
+// Create
+var structure = 
+    new DIV({class: ['row', 'event']},
+        new DIV({class: ['small-3', 'columns'], align: 'center'},
+            new IMG({src: '', width: 30, alt: ''})),
+        new DIV({class: ['small-6', 'columns']},
+            new B(),
+            new P()),
+        new DIV({class: ['small-3', 'columns']},
+            new H3(),
+            new SMALL()));
+// Edit            
+// First Column
+structure.div.div[0].img.src(data.image);
+structure.div.div[0].img.alt(data.title);
+// Second Column
+structure.div.div[1].b.text(data.title);
+structure.div.div[1].p.text(data.description);
+// Third Column
+structure.div.div[2].h3.text(data.header);
+structure.div.div[2].small.text(data.smallText);
+
+// Print
+body.innerHTML = structure.xml();
+```
 
 The Future
 ==========
