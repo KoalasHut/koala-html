@@ -22,6 +22,28 @@ class XML
     if not @attributes
       @attributes = {}
 
+    @create_property key, value for key, value of @attributes
+    @create_tag c.tag, c for c in @content when type(c) is 'object'
+
+  text: (str) ->
+    if not str
+      @content
+    else if str
+      @content = [str]
+
+  create_property: (key, value) ->
+    @[key] = (v) ->
+      if v
+        @attributes[key] = v
+      else if not v
+        @attributes[key]
+
+  create_tag: (tag, xml_object) ->
+    if tag in @
+      @tag = if type(@tag) is 'array' then @tag.push xml_object else @tag = [@tag, xml_object]
+    else if tag not in @
+      @[tag] = xml_object
+
   _convert_attributes: ->
     values = for key, value of @attributes
       value = if type(value) is 'array' then value.join " " else value
@@ -39,7 +61,7 @@ class XML
     @_convert_content()
     # Render
     if @selfclose is on
-      "<#{@tag}#{@converted_attributes}/>;"
+      "<#{@tag}#{@converted_attributes}/>"
     else if @selfclose is off
       "<#{@tag}#{@converted_attributes}>#{@converted_content}</#{@tag}>"
 
@@ -84,6 +106,10 @@ class A extends XML
 class P extends XML
   constructor: (args...) ->
     super "p", args...
+
+class B extends XML
+  constructor: (args...) ->
+    super "b", args...
 
 class SPAN extends XML
   constructor: (args...) ->
