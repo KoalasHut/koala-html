@@ -1,49 +1,20 @@
 Koala HTML
 ==========
 
-Just some HTML entities to help you build a HTML response like:
+Update: Smart instantiation
+---------------------------
+
+No need now to declare de object with null when no properties are provided and there is no correct order to the properties
+The following instatiations are all valid
 
 ```javascript
-  return new DIV(
-    {id: 'wrapper'},
-    new H1(null, 'I\'m a Header!'),
-    new P(null, 'I\'m a paragraph!!'),
-    new DIV(
-        {class: ['button', 'success', 'large']},
-        'I\'m a button!')).xml()
+new DIV();
+new DIV(new P());
+new DIV(new P('hello!'), {class: 'myClass'});
 ```
 
-The code is as simples as possible, following the MISS philosophy, try to maintain it
-I would appreciate some optimization too.
-
-Yes you need to call XML to convert everything to TAGs and readable HTML
-I made that inspired on web2py HTML helper, whitouth calling the XML function you can manipulate the elements like bellow:
-
-```javascript
-var body = document.getElementsByTagName('body')[0];
-// Create
-var header = new DIV({
-    class: ['class1', 'class2', 'class3'],
-    id: 'first'},
-    new H2(null, 'Header!'),
-    new P(null, 'A paragraph...'));
-// Edit
-header.content[1].attributes['class'] = ['class1', 'class2', 'class3', 'class4'];
-// Print
-body.innerHTML = header.xml();
-// Edit again
-var content = new DIV({
-    id: 'content',
-    class: ['twelve', 'columns', 'panel']},
-    new P(null, 'Content Text')
-);
-header.content.push(content);
-// Print again
-body.innerHTML = header.xml();
-```
-
-Update
-------
+Update: Verbosity added :)
+--------------------------
 
 There is one easier way to use, when the object get's long and you catch yourself iterating trough lots of tag.content[n]
 Let's pick the structure bellow:
@@ -95,28 +66,57 @@ body.innerHTML = structure.xml();
 Much easier isn't?
 I thougth so
 
-Smart instantiation
--------------------
 
-No need now to declare de object with null when no properties are provided and there is no correct order to the properties
-The following instatiations are all valid
+Intro
+-----
+
+Just some HTML entities to help you build a HTML response like:
 
 ```javascript
-new DIV();
-new DIV(new P());
-new DIV(new P('hello!'), {class: 'myClass'});
+  return new DIV(
+    {id: 'wrapper'},
+    new H1('I\'m a Header!'),
+    new P('I\'m a paragraph!!'),
+    new DIV(
+        {class: ['button', 'success', 'large']},
+        'I\'m a button!')).xml()
+```
+
+Yes you need to call XML to convert everything to TAGs and readable HTML
+I made that inspired on web2py HTML helper, whitouth calling the XML function you can manipulate the elements like bellow:
+
+```javascript
+var body = document.getElementsByTagName('body')[0];
+// Create
+var header = new DIV({
+    class: ['class1', 'class2', 'class3'],
+    id: 'first'},
+    new H2(null, 'Header!'),
+    new P('A paragraph...'));
+// Edit
+header.content[1].attributes['class'] = ['class1', 'class2', 'class3', 'class4'];
+header.p.attributes['class'] = ['class1', 'class2', 'class3', 'class4'];
+// Print
+body.innerHTML = header.xml();
+// Edit again
+var content = new DIV({
+    id: 'content',
+    class: ['twelve', 'columns', 'panel']},
+    new P('Content Text')
+);
+header.content.push(content);
+// Print again
+body.innerHTML = header.xml();
 ```
 
 The Future
 ==========
 
  - Change render form: from string nodes to DOM 
- 
-There's not much future to it, since I saw jade, but I think jade doesn't help much when you want to process HTML as a javascript object...
+
 
 Considerations
 ==============
 
 Wife and coffee
-
 Thanks for reading
