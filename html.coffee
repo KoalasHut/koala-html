@@ -75,68 +75,133 @@ class XML
     else if @selfclose is off
       "<#{@tag}#{@converted_attributes}>#{@converted_content}</#{@tag}>"
 
-# Now the childs
+# Now the child classes
+class _HTML extends XML
+  constructor: (args...) ->
+    super "html", args...
 
-class DIV extends XML
+class _HEAD extends XML
+  constructor: (args...) ->
+    super "head", args...
+
+class _BODY extends XML
+  constructor: (args...) ->
+    super "body", args...
+
+class _DIV extends XML
   constructor: (args...) ->
     super "div", args...
 
-class H1 extends XML
+class _H1 extends XML
   constructor: (args...) ->
     super "h1", args...
 
-class H2 extends XML
+class _H2 extends XML
   constructor: (args...) ->
     super "h2", args...
 
-class H3 extends XML
+class _H3 extends XML
   constructor: (args...) ->
     super "h3", args...
 
-class H4 extends XML
+class _H4 extends XML
   constructor: (args...) ->
     super "h4", args...
 
-class H5 extends XML
+class _H5 extends XML
   constructor: (args...) ->
     super "h5", args...
 
-class UL extends XML
+class _UL extends XML
   constructor: (args...) ->
     super "ul", args...
 
-class LI extends XML
+class _LI extends XML
   constructor: (args...) ->
     super "li", args...
 
-class A extends XML
+class _A extends XML
   constructor: (args...) ->
     super "a", args...
 
-class P extends XML
+class _P extends XML
   constructor: (args...) ->
     super "p", args...
 
-class B extends XML
+class _B extends XML
   constructor: (args...) ->
     super "b", args...
 
-class SPAN extends XML
+class _SPAN extends XML
   constructor: (args...) ->
     super "span", args...
 
-class SMALL extends XML
+class _SMALL extends XML
   constructor: (args...) ->
     super "small", args...
 
-class IMG extends XML
+class _IMG extends XML
   constructor: (args...) ->
     super "img/", args...
 
-class TR extends XML
+class _TR extends XML
   constructor: (args...) ->
     super "tr", args...
 
-class TD extends XML
+class _TD extends XML
   constructor: (args...) ->
     super "td", args...
+# Now the child functions
+HTML = (args...)->
+  new _HTML args...
+
+HEAD = (args...)->
+  new _HEAD args...
+
+BODY = (args...)->
+  new _BODY args...
+
+DIV = (args...)->
+  new _DIV args...
+
+H1 = (args...)->
+  new _H1 args...
+
+H2 = (args...)->
+  new _H2 args...
+
+H4 = (args...)->
+  new _H4 args...
+
+H5 = (args...)->
+  new _H5 args...
+
+UL = (args...)->
+  new _UL args...
+
+LI = (args...)->
+  new _LI args...
+
+A = (args...)->
+  new _A args...
+
+P = (args...)->
+  new _P args...
+
+B = (args...)->
+  new _B args...
+
+SPAN = (args...)->
+  new _SPAN args...
+
+SMALL = (args...)->
+  new _SMALL args...
+
+IMG = (args...)->
+  new _IMG args...
+
+TR = (args...)->
+  new _TR args...
+
+TD = (args...)->
+  new _TD args...

@@ -1,6 +1,15 @@
 Koala HTML
 ==========
 
+Update: Function wrapper instead of class instantiation
+-------------------------------------------------------
+
+```javascript
+DIV();
+DIV(P());
+DIV(P('hello!'), {class: 'myClass'});
+```
+
 Update: Smart instantiation
 ---------------------------
 
