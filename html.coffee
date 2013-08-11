@@ -12,8 +12,18 @@ type = (obj) ->
 
 # Base class
 class XML
-  constructor: (@tag, @attributes, @content...) ->
+
+  #constructor: (@tag, @attributes, @content...) ->
+  constructor: (@tag, @content...) ->
+    @isXMLObject = true
     @selfclose = off
+
+    @attributes = null
+    for index, arg of @content
+      if type(arg) is 'object' and 'isXMLObject' not of arg
+        @attributes = arg
+        @contet = @content.splice index,1
+
     if @tag[-1..] is '/'
       @selfclose = on
       @tag = @tag[..-2]
@@ -39,9 +49,9 @@ class XML
         @attributes[key]
 
   create_tag: (tag, xml_object) ->
-    if tag in @
-      @tag = if type(@tag) is 'array' then @tag.push xml_object else @tag = [@tag, xml_object]
-    else if tag not in @
+    if tag of @
+      @[tag] = if type(@[tag]) is 'array' then @[tag].push xml_object else @[tag] = [@[tag], xml_object]
+    else if tag not of @
       @[tag] = xml_object
 
   _convert_attributes: ->
