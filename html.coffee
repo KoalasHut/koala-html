@@ -170,6 +170,9 @@ H1 = (args...)->
 H2 = (args...)->
   new _H2 args...
 
+H3 = (args...)->
+  new _H3 args...
+
 H4 = (args...)->
   new _H4 args...
 
