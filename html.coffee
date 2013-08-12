@@ -17,12 +17,12 @@ class XML
   constructor: (@tag, @content...) ->
     @isXMLObject = true
     @selfclose = off
-
     @attributes = null
+    
     for index, arg of @content
       if type(arg) is 'object' and 'isXMLObject' not of arg
         @attributes = arg
-        @contet = @content.splice index,1
+        @content.splice index,1
 
     if @tag[-1..] is '/'
       @selfclose = on
@@ -50,7 +50,10 @@ class XML
 
   create_tag: (tag, xml_object) ->
     if tag of @
-      @[tag] = if type(@[tag]) is 'array' then @[tag].push xml_object else @[tag] = [@[tag], xml_object]
+      if type(@[tag]) is 'array'
+        @[tag].push xml_object
+      else
+        @[tag] = [@[tag], xml_object]
     else if tag not of @
       @[tag] = xml_object
 

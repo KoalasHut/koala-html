@@ -36,7 +36,7 @@ XML = (function() {
       arg = _ref[index];
       if (type(arg) === 'object' && !('isXMLObject' in arg)) {
         this.attributes = arg;
-        this.contet = this.content.splice(index, 1);
+        this.content.splice(index, 1);
       }
     }
     if (this.tag.slice(-1) === '/') {
@@ -81,7 +81,11 @@ XML = (function() {
 
   XML.prototype.create_tag = function(tag, xml_object) {
     if (tag in this) {
-      return this[tag] = type(this[tag]) === 'array' ? this[tag].push(xml_object) : this[tag] = [this[tag], xml_object];
+      if (type(this[tag]) === 'array') {
+        return this[tag].push(xml_object);
+      } else {
+        return this[tag] = [this[tag], xml_object];
+      }
     } else if (!(tag in this)) {
       return this[tag] = xml_object;
     }
