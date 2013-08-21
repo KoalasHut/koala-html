@@ -154,6 +154,27 @@ class _TR extends XML
 class _TD extends XML
   constructor: (args...) ->
     super "td", args...
+
+class _LEGEND extends XML
+  constructor: (args...) ->
+    super "legend", args...
+
+class _FIELDSET extends XML
+  constructor: (args...) ->
+    super "fieldset", args...
+
+class _LABEL extends XML
+  constructor: (args...) ->
+    super "label", args...
+
+class _INPUT extends XML
+  constructor: (args...) ->
+    super "input/", args...
+
+class _TEXTAREA extends XML
+  constructor: (args...) ->
+    super "textarea", args...
+
 # Now the child functions
 HTML = (args...)->
   new _HTML args...
@@ -211,3 +232,18 @@ TR = (args...)->
 
 TD = (args...)->
   new _TD args...
+
+LEGEND = (args...)->
+  new _LEGEND args...
+
+FIELDSET = (args...)->
+  new _FIELDSET args...
+
+LABEL = (args...)->
+  new _LABEL args...
+
+INPUT = (args...)->
+  new _INPUT args...
+
+TEXTAREA = (args...)->
+  new _TEXTAREA args...
