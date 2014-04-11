@@ -3,11 +3,27 @@
 <html>
 <head>
     <title></title>
-    <script type="text/javascript" src="html.min.js"></script>
+    <script type="text/javascript" src="html.js"></script>
 </head>
 <body>
 
     <script type="text/javascript">
+
+        // First test
+        var el = DIV('H');
+        el.append(DIV('e'));
+        el.append(DIV('ll'));
+        el.div[2].append(DIV('0'));
+        console.log(el);
+        console.log(el.xml());
+
+        //Second test
+        var el = DIV('H');
+        el.append(DIV('e')); // Insert a div inside el
+        el.append(DIV('ll')); // Insert another div in the end
+        el.remove(1); // Remove element at Index 1 [in this case is 'e']
+        // Our content was ['h', div, div] remenber that raw text is also one element
+        console.log(el.xml());
 
         var body = document.getElementsByTagName('body')[0];
         // Create

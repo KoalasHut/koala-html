@@ -1,6 +1,46 @@
 Koala HTML
 ==========
 
+Update: Append and Remove feature
+-------------------------------------------------------
+
+```javascript
+var el = DIV('H');
+el.append(DIV('e')); // Insert a div inside el
+el.append(DIV('ll')); // Insert another div in the end
+el.div[2].append(DIV('0')); // Insert a div inside 'll'
+console.log(el.xml());
+```
+
+```html
+<div>H 
+    <div>e</div>
+    <div>ll 
+        <div>0</div>
+    </div>
+</div> 
+```
+
+Remove is the same all you must do is pass the index and how many elements you wanna remove
+
+```javascript
+var el = DIV('H');
+el.append(DIV('e')); // Insert a div inside el
+el.append(DIV('ll')); // Insert another div in the end
+el.remove(1); // Remove element at Index 1 [div('e')]
+// Our content was ['h', div, div] remenber that raw text is also one element
+// To remove both would be el.remove(1,2)
+console.log(el.xml());
+```
+
+```html
+<div>H 
+    <div>ll</div>
+</div> 
+```
+
+For more details on how to use append and remove pay close attention to [Splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) js function
+
 Update: Function wrapper instead of class instantiation
 -------------------------------------------------------
 

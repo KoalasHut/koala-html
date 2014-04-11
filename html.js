@@ -24,7 +24,7 @@ type = function(obj) {
 
 XML = (function() {
   function XML() {
-    var arg, c, content, index, key, tag, value, _i, _len, _ref, _ref1, _ref2;
+    var arg, content, index, tag, _ref;
     tag = arguments[0], content = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
     this.tag = tag;
     this.content = content;
@@ -47,19 +47,36 @@ XML = (function() {
     if (!this.attributes) {
       this.attributes = {};
     }
-    _ref1 = this.attributes;
-    for (key in _ref1) {
-      value = _ref1[key];
+    this.refresh();
+  }
+
+  XML.prototype.refresh = function() {
+    var c, key, value, _i, _len, _ref, _ref1, _results;
+    _ref = this.attributes;
+    for (key in _ref) {
+      value = _ref[key];
       this.create_property(key, value);
     }
-    _ref2 = this.content;
-    for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
-      c = _ref2[_i];
+    _ref1 = this.content;
+    _results = [];
+    for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+      c = _ref1[_i];
       if (type(c) === 'object') {
-        this.create_tag(c.tag, c);
+        _results.push(this.create_tag(c.tag, c));
       }
     }
-  }
+    return _results;
+  };
+
+  XML.prototype.append = function(obj, index) {
+    this.content.splice(index != null ? index : this.content.length, 0, obj);
+    return this.refresh();
+  };
+
+  XML.prototype.remove = function(index, ammount) {
+    this.content.splice(index, ammount != null ? ammount : 1);
+    return this.refresh();
+  };
 
   XML.prototype.text = function(str) {
     if (!str) {

@@ -30,10 +30,21 @@ class XML
       @content = ''
     # Attributes
     if not @attributes
-      @attributes = {}
+      @attributes = {}    
 
+    @refresh()
+
+  refresh: ->
     @create_property key, value for key, value of @attributes
     @create_tag c.tag, c for c in @content when type(c) is 'object'
+
+  append: (obj, index) ->
+    @content.splice index ? @content.length, 0, obj
+    @refresh()
+
+  remove: (index, ammount) ->
+    @content.splice index, ammount ? 1
+    @refresh()
 
   text: (str) ->
     if not str
