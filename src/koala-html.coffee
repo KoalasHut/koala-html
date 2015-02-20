@@ -13,7 +13,6 @@ type = (obj) ->
 # Base class
 class XML
 
-  #constructor: (@tag, @attributes, @content...) ->
   constructor: (@tag, @content...) ->
     @isXMLObject = true
     @selfclose = off
@@ -88,8 +87,6 @@ class XML
       "<#{@tag}#{@converted_attributes}/>"
     else if @selfclose is off
       "<#{@tag}#{@converted_attributes}>#{@converted_content}</#{@tag}>"
-
-#GENERATE#
 
 class _A extends XML
   constructor: (args...) ->

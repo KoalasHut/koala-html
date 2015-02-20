@@ -1,0 +1,39 @@
+{
+  "name": "koala-html",
+  "description": "HTML Entities to Javascript",
+  "url": "http://koala.yungh.com.br",
+  "keywords": [
+    "html",
+    "javascript",
+    "koala",
+    "js to html",
+    "js2html",
+    "templating"
+  ],
+  "author": "Diego Yungh <diego.yungh@gmail.com>",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.13.0",
+    "grunt-contrib-uglify": "^0.8.0"
+  },
+  "main": "koala-html.js",
+  "scripts": {
+    "generate": "python generate.py",
+    "build": "grunt build",
+    "minify": "grunt min",
+    "distribute": "grunt dist"
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KoalasHut/koala-html.git"
+  },
+  "files": [
+    "koala-hml.js",
+    "koala-html.min.js",
+    "koala-html.min.map",
+    "LICENSE"
+  ]
+}

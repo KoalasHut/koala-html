@@ -1,0 +1,7 @@
+{
+  "name"          : "koala-html",
+  "version"       : "1.0.0",
+  "main"          : "koala-html.js",
+  "dependencies"  : {},
+  "ignore"        : ["docs", "examples", "test", "tools", "src", "*.yml", "*.html", "*.ico", "*.md", "CNAME"]
+}
