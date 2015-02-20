@@ -53,18 +53,16 @@ console.log(el.xml());
 Remove is the same all you must do is pass the index and how many elements you want to remove
 
 ```javascript
-var el = DIV('H');
-el.append(DIV('e')); // Insert a div inside el
-el.append(DIV('ll')); // Insert another div in the end
 el.remove(1); // Remove element at Index 1 [div('e')]
-// Our content was ['h', div, div] remember that raw text is also one element
 // To remove both would be el.remove(1,2)
 console.log(el.xml());
 ```
 
 ```html
 <div>H 
-    <div>ll</div>
+    <div>ll 
+        <div>0</div>
+    </div>
 </div> 
 ```
 
