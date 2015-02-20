@@ -14,6 +14,8 @@ class _{0} extends XML
   new _{0} args...'''
 }
 
+targetFile = '../../src/koala-html.coffee'
+
 try:
 	json_data = file('tags.json')
 	tags = json.load(json_data)
@@ -30,7 +32,7 @@ try:
 				'/' if _selfclose is True else '')))
 		render_list.append(templates['function'].format(tag.upper()))
 
-	with open('html.coffee', "a") as source_file:
+	with open(targetFile, "a") as source_file:
 		source_file.write(
 			'\n'.join(render_list))
 		source_file.close()

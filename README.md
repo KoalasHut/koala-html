@@ -1,7 +1,18 @@
 Koala HTML
 ==========
 
-Update: Append and Remove feature
+Just some HTML entities to help you build a HTML response like.
+I made that inspired on web2py HTML helper, you can manipulate the elements however you like and call *.xml()* to compile it to xml.
+
+TAGs are simple functions
+-------------------------------------------------------
+
+```javascript
+DIV().xml(); // => <div></div>
+DIV(A()).xml(); // => <div><a></a></div>
+```
+
+Append and Remove Elements
 -------------------------------------------------------
 
 ```javascript
@@ -21,14 +32,14 @@ console.log(el.xml());
 </div> 
 ```
 
-Remove is the same all you must do is pass the index and how many elements you wanna remove
+Remove is the same all you must do is pass the index and how many elements you want to remove
 
 ```javascript
 var el = DIV('H');
 el.append(DIV('e')); // Insert a div inside el
 el.append(DIV('ll')); // Insert another div in the end
 el.remove(1); // Remove element at Index 1 [div('e')]
-// Our content was ['h', div, div] remenber that raw text is also one element
+// Our content was ['h', div, div] remember that raw text is also one element
 // To remove both would be el.remove(1,2)
 console.log(el.xml());
 ```
@@ -41,122 +52,206 @@ console.log(el.xml());
 
 For more details on how to use append and remove pay close attention to [Splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) js function
 
-Update: Function wrapper instead of class instantiation
--------------------------------------------------------
+List of TAGs
+------------
 
-```javascript
-DIV();
-DIV(P());
-DIV(P('hello!'), {class: 'myClass'});
-```
+There is a json file used to generate the code for the tags, it can be updated and generated at anytime
+Tags with */* at the end, means self-close
 
-Update: Smart instantiation
----------------------------
+* a
+* abbr
+* acronym
+* address
+* applet
+* area/
+* article
+* aside
+* audio
+* b
+* base/
+* basefont
+* bdi
+* bdo
+* bgsound
+* big
+* blink
+* blockquote
+* body
+* br/
+* button
+* canvas
+* caption
+* center
+* cite
+* code
+* col/
+* colgroup
+* content
+* data
+* datalist
+* dd
+* decorator
+* del
+* details
+* dfn
+* dir
+* div
+* dl
+* dt
+* element
+* em
+* embed/
+* fieldset
+* figcaption
+* figure
+* font
+* footer
+* form
+* frame
+* frameset
+* h1
+* h2
+* h3
+* h4
+* h5
+* h6
+* head
+* header
+* hgroup
+* hr/
+* html
+* i
+* iframe
+* img/
+* input/
+* ins
+* isindex
+* kbd
+* keygen/
+* label
+* legend
+* li
+* link/
+* listing
+* main
+* map
+* mark
+* marquee
+* menu
+* menuitem
+* meta/
+* meter
+* nav
+* nobr
+* noframes
+* noscript
+* object
+* ol
+* optgroup
+* option
+* output
+* p
+* param/
+* plaintext
+* pre
+* progress
+* q
+* rp
+* rt
+* ruby
+* s
+* samp
+* script
+* section
+* select
+* shadow
+* small
+* source/
+* spacer
+* span
+* strike
+* strong
+* style
+* sub
+* summary
+* sup
+* table
+* tbody
+* td
+* template
+* textarea
+* tfoot
+* th
+* thead
+* time
+* title
+* tr
+* track/
+* tt
+* u
+* ul
+* var
+* video
+* wbr/
+* xmp
 
-No need now to declare de object with null when no properties are provided and there is no correct order to the properties
-The following instatiations are all valid
+Verbosity that helps
+--------------------
 
-```javascript
-new DIV();
-new DIV(new P());
-new DIV(new P('hello!'), {class: 'myClass'});
-```
-
-Update: Verbosity added :)
---------------------------
-
-There is one easier way to use, when the object get's long and you catch yourself iterating trough lots of tag.content[n]
+When creating list of elements they are mapped by the tagname so you can pick by the tagname[index]
 Let's pick the structure bellow:
 
 ```html
-<div class="row event first">
-    <div class="small-3 columns" align="center">
+<div class="row">
+    <div class="col">
         <img src="" width="30" alt="">
     </div>
-    <div class="small-6 columns">
+    <div class="col">
         <b></b>
         <p></p>
     </div>
-    <div class="small-3 columns">
+    <div class="col">
         <h3></h3>
         <small></small>
     </div>
 </div>
 ```
 
-Imagine populating it whith JSON data received from somewhere
+Imagine populating it whith JSON data received from somewhere, would be painfull without some classes
+and identifiers to pick the exact element, that's the why we mapped them
 
 ```javascript
 // Create
 var structure = 
-    new DIV({class: ['row', 'event']},
-        new DIV({class: ['small-3', 'columns'], align: 'center'},
-            new IMG({src: '', width: 30, alt: ''})),
-        new DIV({class: ['small-6', 'columns']},
-            new B(),
-            new P()),
-        new DIV({class: ['small-3', 'columns']},
-            new H3(),
-            new SMALL()));
+    DIV({class: 'row'},
+        DIV({class: 'col'},
+            IMG({src: '', width: 30, alt: ''})
+        ),
+        DIV({class: 'col'},
+            B(),
+            P()
+        ),
+        DIV({class: 'col'},
+            H3(),
+            SMALL()
+        )
+    );
 // Edit            
+
 // First Column
 structure.div[0].img.src(data.image);
 structure.div[0].img.alt(data.title);
+
 // Second Column
 structure.div[1].b.text(data.title);
 structure.div[1].p.text(data.description);
+
 // Third Column
 structure.div[2].h3.text(data.header);
 structure.div[2].small.text(data.smallText);
-
-// Print
-body.innerHTML = structure.xml();
 ```
 Much easier isn't?
 I thougth so
-
-
-Intro
------
-
-Just some HTML entities to help you build a HTML response like:
-
-```javascript
-  return new DIV(
-    {id: 'wrapper'},
-    new H1('I\'m a Header!'),
-    new P('I\'m a paragraph!!'),
-    new DIV(
-        {class: ['button', 'success', 'large']},
-        'I\'m a button!')).xml()
-```
-
-Yes you need to call XML to convert everything to TAGs and readable HTML
-I made that inspired on web2py HTML helper, whitouth calling the XML function you can manipulate the elements like bellow:
-
-```javascript
-var body = document.getElementsByTagName('body')[0];
-// Create
-var header = new DIV({
-    class: ['class1', 'class2', 'class3'],
-    id: 'first'},
-    new H2(null, 'Header!'),
-    new P('A paragraph...'));
-// Edit
-header.content[1].attributes['class'] = ['class1', 'class2', 'class3', 'class4'];
-header.p.attributes['class'] = ['class1', 'class2', 'class3', 'class4'];
-// Print
-body.innerHTML = header.xml();
-// Edit again
-var content = new DIV({
-    id: 'content',
-    class: ['twelve', 'columns', 'panel']},
-    new P('Content Text')
-);
-header.content.push(content);
-// Print again
-body.innerHTML = header.xml();
-```
 
 The Future
 ==========

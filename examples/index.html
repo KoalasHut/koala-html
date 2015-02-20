@@ -2,8 +2,8 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title></title>
-    <script type="text/javascript" src="html.js"></script>
+    <title>Koala HTML</title>
+    <script type="text/javascript" src="../koala-html.min.js"></script>
 </head>
 <body>
 
@@ -27,20 +27,20 @@
 
         var body = document.getElementsByTagName('body')[0];
         // Create
-        var header = new DIV({
+        var header = DIV({
             class: ['class1', 'class2', 'class3'],
             id: 'first'},
-            new H2(null, 'Header!'),
-            new P(null, 'A paragraph...'));
+            H2('Header!'),
+            P('A paragraph...'));
         // Edit
         header.content[1].attributes['class'] = ['class1', 'class2', 'class3', 'class4'];
         // Print
         body.innerHTML = header.xml();
         // Edit again
-        var content = new DIV({
+        var content = DIV({
             id: 'content',
             class: ['twelve', 'columns', 'panel']},
-            new P(null, 'Content Text')
+            P('Content Text')
         );
         header.content.push(content);
         // Print again

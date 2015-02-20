@@ -15,6 +15,9 @@ module.exports = function(grunt) {
 
         coffee: {
             'all': {
+                options: {
+                    bare: true
+                },
                 files: {
                     '<%= distPath %>/koala-html.js': '<%= src %>/koala-html.coffee'
                 }
@@ -23,9 +26,6 @@ module.exports = function(grunt) {
 
         uglify: {
             options: {
-                mangle: {
-                    toplevel: true
-                },
                 squeeze: {
                     dead_code: false
                 },

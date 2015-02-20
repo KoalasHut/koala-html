@@ -1,3292 +1,3290 @@
-(function() {
-  var A, ABBR, ACRONYM, ADDRESS, APPLET, AREA, ARTICLE, ASIDE, AUDIO, B, BASE, BASEFONT, BDI, BDO, BGSOUND, BIG, BLINK, BLOCKQUOTE, BODY, BR, BUTTON, CANVAS, CAPTION, CENTER, CITE, CODE, COL, COLGROUP, CONTENT, DATA, DATALIST, DD, DECORATOR, DEL, DETAILS, DFN, DIR, DIV, DL, DT, ELEMENT, EM, EMBED, FIELDSET, FIGCAPTION, FIGURE, FONT, FOOTER, FORM, FRAME, FRAMESET, H1, H2, H3, H4, H5, H6, HEAD, HEADER, HGROUP, HR, HTML, I, IFRAME, IMG, INPUT, INS, ISINDEX, KBD, KEYGEN, LABEL, LEGEND, LI, LINK, LISTING, MAIN, MAP, MARK, MARQUEE, MENU, MENUITEM, META, METER, NAV, NOBR, NOFRAMES, NOSCRIPT, OBJECT, OL, OPTGROUP, OPTION, OUTPUT, P, PARAM, PLAINTEXT, PRE, PROGRESS, Q, RP, RT, RUBY, S, SAMP, SCRIPT, SECTION, SELECT, SHADOW, SMALL, SOURCE, SPACER, SPAN, STRIKE, STRONG, STYLE, SUB, SUMMARY, SUP, TABLE, TBODY, TD, TEMPLATE, TEXTAREA, TFOOT, TH, THEAD, TIME, TITLE, TR, TRACK, TT, U, UL, VAR, VIDEO, WBR, XML, XMP, _A, _ABBR, _ACRONYM, _ADDRESS, _APPLET, _AREA, _ARTICLE, _ASIDE, _AUDIO, _B, _BASE, _BASEFONT, _BDI, _BDO, _BGSOUND, _BIG, _BLINK, _BLOCKQUOTE, _BODY, _BR, _BUTTON, _CANVAS, _CAPTION, _CENTER, _CITE, _CODE, _COL, _COLGROUP, _CONTENT, _DATA, _DATALIST, _DD, _DECORATOR, _DEL, _DETAILS, _DFN, _DIR, _DIV, _DL, _DT, _ELEMENT, _EM, _EMBED, _FIELDSET, _FIGCAPTION, _FIGURE, _FONT, _FOOTER, _FORM, _FRAME, _FRAMESET, _H1, _H2, _H3, _H4, _H5, _H6, _HEAD, _HEADER, _HGROUP, _HR, _HTML, _I, _IFRAME, _IMG, _INPUT, _INS, _ISINDEX, _KBD, _KEYGEN, _LABEL, _LEGEND, _LI, _LINK, _LISTING, _MAIN, _MAP, _MARK, _MARQUEE, _MENU, _MENUITEM, _META, _METER, _NAV, _NOBR, _NOFRAMES, _NOSCRIPT, _OBJECT, _OL, _OPTGROUP, _OPTION, _OUTPUT, _P, _PARAM, _PLAINTEXT, _PRE, _PROGRESS, _Q, _RP, _RT, _RUBY, _S, _SAMP, _SCRIPT, _SECTION, _SELECT, _SHADOW, _SMALL, _SOURCE, _SPACER, _SPAN, _STRIKE, _STRONG, _STYLE, _SUB, _SUMMARY, _SUP, _TABLE, _TBODY, _TD, _TEMPLATE, _TEXTAREA, _TFOOT, _TH, _THEAD, _TIME, _TITLE, _TR, _TRACK, _TT, _U, _UL, _VAR, _VIDEO, _WBR, _XMP, type,
-    slice = [].slice,
-    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-    hasProp = {}.hasOwnProperty;
+var A, ABBR, ACRONYM, ADDRESS, APPLET, AREA, ARTICLE, ASIDE, AUDIO, B, BASE, BASEFONT, BDI, BDO, BGSOUND, BIG, BLINK, BLOCKQUOTE, BODY, BR, BUTTON, CANVAS, CAPTION, CENTER, CITE, CODE, COL, COLGROUP, CONTENT, DATA, DATALIST, DD, DECORATOR, DEL, DETAILS, DFN, DIR, DIV, DL, DT, ELEMENT, EM, EMBED, FIELDSET, FIGCAPTION, FIGURE, FONT, FOOTER, FORM, FRAME, FRAMESET, H1, H2, H3, H4, H5, H6, HEAD, HEADER, HGROUP, HR, HTML, I, IFRAME, IMG, INPUT, INS, ISINDEX, KBD, KEYGEN, LABEL, LEGEND, LI, LINK, LISTING, MAIN, MAP, MARK, MARQUEE, MENU, MENUITEM, META, METER, NAV, NOBR, NOFRAMES, NOSCRIPT, OBJECT, OL, OPTGROUP, OPTION, OUTPUT, P, PARAM, PLAINTEXT, PRE, PROGRESS, Q, RP, RT, RUBY, S, SAMP, SCRIPT, SECTION, SELECT, SHADOW, SMALL, SOURCE, SPACER, SPAN, STRIKE, STRONG, STYLE, SUB, SUMMARY, SUP, TABLE, TBODY, TD, TEMPLATE, TEXTAREA, TFOOT, TH, THEAD, TIME, TITLE, TR, TRACK, TT, U, UL, VAR, VIDEO, WBR, XML, XMP, _A, _ABBR, _ACRONYM, _ADDRESS, _APPLET, _AREA, _ARTICLE, _ASIDE, _AUDIO, _B, _BASE, _BASEFONT, _BDI, _BDO, _BGSOUND, _BIG, _BLINK, _BLOCKQUOTE, _BODY, _BR, _BUTTON, _CANVAS, _CAPTION, _CENTER, _CITE, _CODE, _COL, _COLGROUP, _CONTENT, _DATA, _DATALIST, _DD, _DECORATOR, _DEL, _DETAILS, _DFN, _DIR, _DIV, _DL, _DT, _ELEMENT, _EM, _EMBED, _FIELDSET, _FIGCAPTION, _FIGURE, _FONT, _FOOTER, _FORM, _FRAME, _FRAMESET, _H1, _H2, _H3, _H4, _H5, _H6, _HEAD, _HEADER, _HGROUP, _HR, _HTML, _I, _IFRAME, _IMG, _INPUT, _INS, _ISINDEX, _KBD, _KEYGEN, _LABEL, _LEGEND, _LI, _LINK, _LISTING, _MAIN, _MAP, _MARK, _MARQUEE, _MENU, _MENUITEM, _META, _METER, _NAV, _NOBR, _NOFRAMES, _NOSCRIPT, _OBJECT, _OL, _OPTGROUP, _OPTION, _OUTPUT, _P, _PARAM, _PLAINTEXT, _PRE, _PROGRESS, _Q, _RP, _RT, _RUBY, _S, _SAMP, _SCRIPT, _SECTION, _SELECT, _SHADOW, _SMALL, _SOURCE, _SPACER, _SPAN, _STRIKE, _STRONG, _STYLE, _SUB, _SUMMARY, _SUP, _TABLE, _TBODY, _TD, _TEMPLATE, _TEXTAREA, _TFOOT, _TH, _THEAD, _TIME, _TITLE, _TR, _TRACK, _TT, _U, _UL, _VAR, _VIDEO, _WBR, _XMP, type,
+  slice = [].slice,
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-  type = function(obj) {
-    var classToType, i, len, myClass, name, ref;
-    if (obj === void 0 || obj === null) {
-      return String(obj);
+type = function(obj) {
+  var classToType, i, len, myClass, name, ref;
+  if (obj === void 0 || obj === null) {
+    return String(obj);
+  }
+  classToType = new Object;
+  ref = "Boolean Number String Function Array Date RegExp".split(" ");
+  for (i = 0, len = ref.length; i < len; i++) {
+    name = ref[i];
+    classToType["[object " + name + "]"] = name.toLowerCase();
+  }
+  myClass = Object.prototype.toString.call(obj);
+  if (myClass in classToType) {
+    return classToType[myClass];
+  }
+  return "object";
+};
+
+XML = (function() {
+  function XML() {
+    var arg, content, index, ref, tag1;
+    tag1 = arguments[0], content = 2 <= arguments.length ? slice.call(arguments, 1) : [];
+    this.tag = tag1;
+    this.content = content;
+    this.isXMLObject = true;
+    this.selfclose = false;
+    this.attributes = null;
+    ref = this.content;
+    for (index in ref) {
+      arg = ref[index];
+      if (type(arg) === 'object' && !('isXMLObject' in arg)) {
+        this.attributes = arg;
+        this.content.splice(index, 1);
+      }
     }
-    classToType = new Object;
-    ref = "Boolean Number String Function Array Date RegExp".split(" ");
-    for (i = 0, len = ref.length; i < len; i++) {
-      name = ref[i];
-      classToType["[object " + name + "]"] = name.toLowerCase();
+    if (this.tag.slice(-1) === '/') {
+      this.selfclose = true;
+      this.tag = this.tag.slice(0, -1);
+      this.content = '';
     }
-    myClass = Object.prototype.toString.call(obj);
-    if (myClass in classToType) {
-      return classToType[myClass];
+    if (!this.attributes) {
+      this.attributes = {};
     }
-    return "object";
+    this.refresh();
+  }
+
+  XML.prototype.refresh = function() {
+    var c, i, key, len, ref, ref1, results, value;
+    ref = this.attributes;
+    for (key in ref) {
+      value = ref[key];
+      this.create_property(key, value);
+    }
+    ref1 = this.content;
+    results = [];
+    for (i = 0, len = ref1.length; i < len; i++) {
+      c = ref1[i];
+      if (type(c) === 'object') {
+        results.push(this.create_tag(c.tag, c));
+      }
+    }
+    return results;
   };
 
-  XML = (function() {
-    function XML() {
-      var arg, content, index, ref, tag1;
-      tag1 = arguments[0], content = 2 <= arguments.length ? slice.call(arguments, 1) : [];
-      this.tag = tag1;
-      this.content = content;
-      this.isXMLObject = true;
-      this.selfclose = false;
-      this.attributes = null;
-      ref = this.content;
-      for (index in ref) {
-        arg = ref[index];
-        if (type(arg) === 'object' && !('isXMLObject' in arg)) {
-          this.attributes = arg;
-          this.content.splice(index, 1);
-        }
-      }
-      if (this.tag.slice(-1) === '/') {
-        this.selfclose = true;
-        this.tag = this.tag.slice(0, -1);
-        this.content = '';
-      }
-      if (!this.attributes) {
-        this.attributes = {};
-      }
-      this.refresh();
-    }
+  XML.prototype.append = function(obj, index) {
+    this.content.splice(index != null ? index : this.content.length, 0, obj);
+    return this.refresh();
+  };
 
-    XML.prototype.refresh = function() {
-      var c, i, key, len, ref, ref1, results, value;
+  XML.prototype.remove = function(index, ammount) {
+    this.content.splice(index, ammount != null ? ammount : 1);
+    return this.refresh();
+  };
+
+  XML.prototype.text = function(str) {
+    if (!str) {
+      return this.content;
+    } else if (str) {
+      return this.content = [str];
+    }
+  };
+
+  XML.prototype.create_property = function(key, value) {
+    return this[key] = function(v) {
+      if (v) {
+        return this.attributes[key] = v;
+      } else if (!v) {
+        return this.attributes[key];
+      }
+    };
+  };
+
+  XML.prototype.create_tag = function(tag, xml_object) {
+    if (tag in this) {
+      if (type(this[tag]) === 'array') {
+        return this[tag].push(xml_object);
+      } else {
+        return this[tag] = [this[tag], xml_object];
+      }
+    } else if (!(tag in this)) {
+      return this[tag] = xml_object;
+    }
+  };
+
+  XML.prototype._convert_attributes = function() {
+    var key, value, values;
+    values = (function() {
+      var ref, results;
       ref = this.attributes;
+      results = [];
       for (key in ref) {
         value = ref[key];
-        this.create_property(key, value);
-      }
-      ref1 = this.content;
-      results = [];
-      for (i = 0, len = ref1.length; i < len; i++) {
-        c = ref1[i];
-        if (type(c) === 'object') {
-          results.push(this.create_tag(c.tag, c));
+        value = type(value) === 'array' ? value.join(" ") : value;
+        if (value) {
+          results.push(key + "=\"" + value + "\"");
+        } else {
+          results.push(key);
         }
       }
       return results;
-    };
+    }).call(this);
+    values.splice(0, 0, "");
+    return this.converted_attributes = this.attributes ? "" + (values.join(" ")) : "";
+  };
 
-    XML.prototype.append = function(obj, index) {
-      this.content.splice(index != null ? index : this.content.length, 0, obj);
-      return this.refresh();
-    };
-
-    XML.prototype.remove = function(index, ammount) {
-      this.content.splice(index, ammount != null ? ammount : 1);
-      return this.refresh();
-    };
-
-    XML.prototype.text = function(str) {
-      if (!str) {
-        return this.content;
-      } else if (str) {
-        return this.content = [str];
-      }
-    };
-
-    XML.prototype.create_property = function(key, value) {
-      return this[key] = function(v) {
-        if (v) {
-          return this.attributes[key] = v;
-        } else if (!v) {
-          return this.attributes[key];
-        }
-      };
-    };
-
-    XML.prototype.create_tag = function(tag, xml_object) {
-      if (tag in this) {
-        if (type(this[tag]) === 'array') {
-          return this[tag].push(xml_object);
+  XML.prototype._convert_content = function() {
+    var c, contents;
+    contents = (function() {
+      var i, len, ref, results;
+      ref = this.content;
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        c = ref[i];
+        if (type(c) === 'object') {
+          results.push(c.xml());
         } else {
-          return this[tag] = [this[tag], xml_object];
+          results.push(c);
         }
-      } else if (!(tag in this)) {
-        return this[tag] = xml_object;
       }
-    };
-
-    XML.prototype._convert_attributes = function() {
-      var key, value, values;
-      values = (function() {
-        var ref, results;
-        ref = this.attributes;
-        results = [];
-        for (key in ref) {
-          value = ref[key];
-          value = type(value) === 'array' ? value.join(" ") : value;
-          if (value) {
-            results.push(key + "=\"" + value + "\"");
-          } else {
-            results.push(key);
-          }
-        }
-        return results;
-      }).call(this);
-      return this.converted_attributes = this.attributes ? " " + (values.join(" ")) : "";
-    };
-
-    XML.prototype._convert_content = function() {
-      var c, contents;
-      contents = (function() {
-        var i, len, ref, results;
-        ref = this.content;
-        results = [];
-        for (i = 0, len = ref.length; i < len; i++) {
-          c = ref[i];
-          if (type(c) === 'object') {
-            results.push(c.xml());
-          } else {
-            results.push(c);
-          }
-        }
-        return results;
-      }).call(this);
-      return this.converted_content = contents.join(' ');
-    };
-
-    XML.prototype.xml = function() {
-      this._convert_attributes();
-      this._convert_content();
-      if (this.selfclose === true) {
-        return "<" + this.tag + this.converted_attributes + "/>";
-      } else if (this.selfclose === false) {
-        return "<" + this.tag + this.converted_attributes + ">" + this.converted_content + "</" + this.tag + ">";
-      }
-    };
-
-    return XML;
-
-  })();
-
-  _A = (function(superClass) {
-    extend(_A, superClass);
-
-    function _A() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _A.__super__.constructor.apply(this, ["a"].concat(slice.call(args)));
+      return results;
+    }).call(this);
+    return this.converted_content = contents.join(' ');
+  };
+
+  XML.prototype.xml = function() {
+    this._convert_attributes();
+    this._convert_content();
+    if (this.selfclose === true) {
+      return "<" + this.tag + this.converted_attributes + "/>";
+    } else if (this.selfclose === false) {
+      return "<" + this.tag + this.converted_attributes + ">" + this.converted_content + "</" + this.tag + ">";
     }
+  };
+
+  return XML;
 
-    return _A;
+})();
 
-  })(XML);
+_A = (function(superClass) {
+  extend(_A, superClass);
 
-  A = function() {
+  function _A() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_A, args, function(){});
-  };
+    _A.__super__.constructor.apply(this, ["a"].concat(slice.call(args)));
+  }
 
-  _ABBR = (function(superClass) {
-    extend(_ABBR, superClass);
+  return _A;
 
-    function _ABBR() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _ABBR.__super__.constructor.apply(this, ["abbr"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _ABBR;
+A = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_A, args, function(){});
+};
 
-  })(XML);
+_ABBR = (function(superClass) {
+  extend(_ABBR, superClass);
 
-  ABBR = function() {
+  function _ABBR() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_ABBR, args, function(){});
-  };
+    _ABBR.__super__.constructor.apply(this, ["abbr"].concat(slice.call(args)));
+  }
 
-  _ACRONYM = (function(superClass) {
-    extend(_ACRONYM, superClass);
+  return _ABBR;
 
-    function _ACRONYM() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _ACRONYM.__super__.constructor.apply(this, ["acronym"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _ACRONYM;
+ABBR = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_ABBR, args, function(){});
+};
 
-  })(XML);
+_ACRONYM = (function(superClass) {
+  extend(_ACRONYM, superClass);
 
-  ACRONYM = function() {
+  function _ACRONYM() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_ACRONYM, args, function(){});
-  };
+    _ACRONYM.__super__.constructor.apply(this, ["acronym"].concat(slice.call(args)));
+  }
 
-  _ADDRESS = (function(superClass) {
-    extend(_ADDRESS, superClass);
+  return _ACRONYM;
 
-    function _ADDRESS() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _ADDRESS.__super__.constructor.apply(this, ["address"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _ADDRESS;
+ACRONYM = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_ACRONYM, args, function(){});
+};
 
-  })(XML);
+_ADDRESS = (function(superClass) {
+  extend(_ADDRESS, superClass);
 
-  ADDRESS = function() {
+  function _ADDRESS() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_ADDRESS, args, function(){});
-  };
+    _ADDRESS.__super__.constructor.apply(this, ["address"].concat(slice.call(args)));
+  }
 
-  _APPLET = (function(superClass) {
-    extend(_APPLET, superClass);
+  return _ADDRESS;
 
-    function _APPLET() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _APPLET.__super__.constructor.apply(this, ["applet"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _APPLET;
+ADDRESS = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_ADDRESS, args, function(){});
+};
 
-  })(XML);
+_APPLET = (function(superClass) {
+  extend(_APPLET, superClass);
 
-  APPLET = function() {
+  function _APPLET() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_APPLET, args, function(){});
-  };
+    _APPLET.__super__.constructor.apply(this, ["applet"].concat(slice.call(args)));
+  }
 
-  _AREA = (function(superClass) {
-    extend(_AREA, superClass);
+  return _APPLET;
 
-    function _AREA() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _AREA.__super__.constructor.apply(this, ["area/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _AREA;
+APPLET = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_APPLET, args, function(){});
+};
 
-  })(XML);
+_AREA = (function(superClass) {
+  extend(_AREA, superClass);
 
-  AREA = function() {
+  function _AREA() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_AREA, args, function(){});
-  };
+    _AREA.__super__.constructor.apply(this, ["area/"].concat(slice.call(args)));
+  }
 
-  _ARTICLE = (function(superClass) {
-    extend(_ARTICLE, superClass);
+  return _AREA;
 
-    function _ARTICLE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _ARTICLE.__super__.constructor.apply(this, ["article"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _ARTICLE;
+AREA = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_AREA, args, function(){});
+};
 
-  })(XML);
+_ARTICLE = (function(superClass) {
+  extend(_ARTICLE, superClass);
 
-  ARTICLE = function() {
+  function _ARTICLE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_ARTICLE, args, function(){});
-  };
+    _ARTICLE.__super__.constructor.apply(this, ["article"].concat(slice.call(args)));
+  }
 
-  _ASIDE = (function(superClass) {
-    extend(_ASIDE, superClass);
+  return _ARTICLE;
 
-    function _ASIDE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _ASIDE.__super__.constructor.apply(this, ["aside"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _ASIDE;
+ARTICLE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_ARTICLE, args, function(){});
+};
 
-  })(XML);
+_ASIDE = (function(superClass) {
+  extend(_ASIDE, superClass);
 
-  ASIDE = function() {
+  function _ASIDE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_ASIDE, args, function(){});
-  };
+    _ASIDE.__super__.constructor.apply(this, ["aside"].concat(slice.call(args)));
+  }
 
-  _AUDIO = (function(superClass) {
-    extend(_AUDIO, superClass);
+  return _ASIDE;
 
-    function _AUDIO() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _AUDIO.__super__.constructor.apply(this, ["audio"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _AUDIO;
+ASIDE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_ASIDE, args, function(){});
+};
 
-  })(XML);
+_AUDIO = (function(superClass) {
+  extend(_AUDIO, superClass);
 
-  AUDIO = function() {
+  function _AUDIO() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_AUDIO, args, function(){});
-  };
+    _AUDIO.__super__.constructor.apply(this, ["audio"].concat(slice.call(args)));
+  }
 
-  _B = (function(superClass) {
-    extend(_B, superClass);
+  return _AUDIO;
 
-    function _B() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _B.__super__.constructor.apply(this, ["b"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _B;
+AUDIO = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_AUDIO, args, function(){});
+};
 
-  })(XML);
+_B = (function(superClass) {
+  extend(_B, superClass);
 
-  B = function() {
+  function _B() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_B, args, function(){});
-  };
+    _B.__super__.constructor.apply(this, ["b"].concat(slice.call(args)));
+  }
 
-  _BASE = (function(superClass) {
-    extend(_BASE, superClass);
+  return _B;
 
-    function _BASE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _BASE.__super__.constructor.apply(this, ["base/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _BASE;
+B = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_B, args, function(){});
+};
 
-  })(XML);
+_BASE = (function(superClass) {
+  extend(_BASE, superClass);
 
-  BASE = function() {
+  function _BASE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_BASE, args, function(){});
-  };
+    _BASE.__super__.constructor.apply(this, ["base/"].concat(slice.call(args)));
+  }
 
-  _BASEFONT = (function(superClass) {
-    extend(_BASEFONT, superClass);
+  return _BASE;
 
-    function _BASEFONT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _BASEFONT.__super__.constructor.apply(this, ["basefont"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _BASEFONT;
+BASE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_BASE, args, function(){});
+};
 
-  })(XML);
+_BASEFONT = (function(superClass) {
+  extend(_BASEFONT, superClass);
 
-  BASEFONT = function() {
+  function _BASEFONT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_BASEFONT, args, function(){});
-  };
+    _BASEFONT.__super__.constructor.apply(this, ["basefont"].concat(slice.call(args)));
+  }
 
-  _BDI = (function(superClass) {
-    extend(_BDI, superClass);
+  return _BASEFONT;
 
-    function _BDI() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _BDI.__super__.constructor.apply(this, ["bdi"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _BDI;
+BASEFONT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_BASEFONT, args, function(){});
+};
 
-  })(XML);
+_BDI = (function(superClass) {
+  extend(_BDI, superClass);
 
-  BDI = function() {
+  function _BDI() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_BDI, args, function(){});
-  };
+    _BDI.__super__.constructor.apply(this, ["bdi"].concat(slice.call(args)));
+  }
 
-  _BDO = (function(superClass) {
-    extend(_BDO, superClass);
+  return _BDI;
 
-    function _BDO() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _BDO.__super__.constructor.apply(this, ["bdo"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _BDO;
+BDI = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_BDI, args, function(){});
+};
 
-  })(XML);
+_BDO = (function(superClass) {
+  extend(_BDO, superClass);
 
-  BDO = function() {
+  function _BDO() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_BDO, args, function(){});
-  };
+    _BDO.__super__.constructor.apply(this, ["bdo"].concat(slice.call(args)));
+  }
 
-  _BGSOUND = (function(superClass) {
-    extend(_BGSOUND, superClass);
+  return _BDO;
 
-    function _BGSOUND() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _BGSOUND.__super__.constructor.apply(this, ["bgsound"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _BGSOUND;
+BDO = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_BDO, args, function(){});
+};
 
-  })(XML);
+_BGSOUND = (function(superClass) {
+  extend(_BGSOUND, superClass);
 
-  BGSOUND = function() {
+  function _BGSOUND() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_BGSOUND, args, function(){});
-  };
+    _BGSOUND.__super__.constructor.apply(this, ["bgsound"].concat(slice.call(args)));
+  }
 
-  _BIG = (function(superClass) {
-    extend(_BIG, superClass);
+  return _BGSOUND;
 
-    function _BIG() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _BIG.__super__.constructor.apply(this, ["big"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _BIG;
+BGSOUND = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_BGSOUND, args, function(){});
+};
 
-  })(XML);
+_BIG = (function(superClass) {
+  extend(_BIG, superClass);
 
-  BIG = function() {
+  function _BIG() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_BIG, args, function(){});
-  };
+    _BIG.__super__.constructor.apply(this, ["big"].concat(slice.call(args)));
+  }
 
-  _BLINK = (function(superClass) {
-    extend(_BLINK, superClass);
+  return _BIG;
 
-    function _BLINK() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _BLINK.__super__.constructor.apply(this, ["blink"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _BLINK;
+BIG = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_BIG, args, function(){});
+};
 
-  })(XML);
+_BLINK = (function(superClass) {
+  extend(_BLINK, superClass);
 
-  BLINK = function() {
+  function _BLINK() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_BLINK, args, function(){});
-  };
+    _BLINK.__super__.constructor.apply(this, ["blink"].concat(slice.call(args)));
+  }
 
-  _BLOCKQUOTE = (function(superClass) {
-    extend(_BLOCKQUOTE, superClass);
+  return _BLINK;
 
-    function _BLOCKQUOTE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _BLOCKQUOTE.__super__.constructor.apply(this, ["blockquote"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _BLOCKQUOTE;
+BLINK = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_BLINK, args, function(){});
+};
 
-  })(XML);
+_BLOCKQUOTE = (function(superClass) {
+  extend(_BLOCKQUOTE, superClass);
 
-  BLOCKQUOTE = function() {
+  function _BLOCKQUOTE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_BLOCKQUOTE, args, function(){});
-  };
+    _BLOCKQUOTE.__super__.constructor.apply(this, ["blockquote"].concat(slice.call(args)));
+  }
 
-  _BODY = (function(superClass) {
-    extend(_BODY, superClass);
+  return _BLOCKQUOTE;
 
-    function _BODY() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _BODY.__super__.constructor.apply(this, ["body"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _BODY;
+BLOCKQUOTE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_BLOCKQUOTE, args, function(){});
+};
 
-  })(XML);
+_BODY = (function(superClass) {
+  extend(_BODY, superClass);
 
-  BODY = function() {
+  function _BODY() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_BODY, args, function(){});
-  };
+    _BODY.__super__.constructor.apply(this, ["body"].concat(slice.call(args)));
+  }
 
-  _BR = (function(superClass) {
-    extend(_BR, superClass);
+  return _BODY;
 
-    function _BR() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _BR.__super__.constructor.apply(this, ["br/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _BR;
+BODY = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_BODY, args, function(){});
+};
 
-  })(XML);
+_BR = (function(superClass) {
+  extend(_BR, superClass);
 
-  BR = function() {
+  function _BR() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_BR, args, function(){});
-  };
+    _BR.__super__.constructor.apply(this, ["br/"].concat(slice.call(args)));
+  }
 
-  _BUTTON = (function(superClass) {
-    extend(_BUTTON, superClass);
+  return _BR;
 
-    function _BUTTON() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _BUTTON.__super__.constructor.apply(this, ["button"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _BUTTON;
+BR = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_BR, args, function(){});
+};
 
-  })(XML);
+_BUTTON = (function(superClass) {
+  extend(_BUTTON, superClass);
 
-  BUTTON = function() {
+  function _BUTTON() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_BUTTON, args, function(){});
-  };
+    _BUTTON.__super__.constructor.apply(this, ["button"].concat(slice.call(args)));
+  }
 
-  _CANVAS = (function(superClass) {
-    extend(_CANVAS, superClass);
+  return _BUTTON;
 
-    function _CANVAS() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _CANVAS.__super__.constructor.apply(this, ["canvas"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _CANVAS;
+BUTTON = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_BUTTON, args, function(){});
+};
 
-  })(XML);
+_CANVAS = (function(superClass) {
+  extend(_CANVAS, superClass);
 
-  CANVAS = function() {
+  function _CANVAS() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_CANVAS, args, function(){});
-  };
+    _CANVAS.__super__.constructor.apply(this, ["canvas"].concat(slice.call(args)));
+  }
 
-  _CAPTION = (function(superClass) {
-    extend(_CAPTION, superClass);
+  return _CANVAS;
 
-    function _CAPTION() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _CAPTION.__super__.constructor.apply(this, ["caption"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _CAPTION;
+CANVAS = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_CANVAS, args, function(){});
+};
 
-  })(XML);
+_CAPTION = (function(superClass) {
+  extend(_CAPTION, superClass);
 
-  CAPTION = function() {
+  function _CAPTION() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_CAPTION, args, function(){});
-  };
+    _CAPTION.__super__.constructor.apply(this, ["caption"].concat(slice.call(args)));
+  }
 
-  _CENTER = (function(superClass) {
-    extend(_CENTER, superClass);
+  return _CAPTION;
 
-    function _CENTER() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _CENTER.__super__.constructor.apply(this, ["center"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _CENTER;
+CAPTION = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_CAPTION, args, function(){});
+};
 
-  })(XML);
+_CENTER = (function(superClass) {
+  extend(_CENTER, superClass);
 
-  CENTER = function() {
+  function _CENTER() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_CENTER, args, function(){});
-  };
+    _CENTER.__super__.constructor.apply(this, ["center"].concat(slice.call(args)));
+  }
 
-  _CITE = (function(superClass) {
-    extend(_CITE, superClass);
+  return _CENTER;
 
-    function _CITE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _CITE.__super__.constructor.apply(this, ["cite"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _CITE;
+CENTER = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_CENTER, args, function(){});
+};
 
-  })(XML);
+_CITE = (function(superClass) {
+  extend(_CITE, superClass);
 
-  CITE = function() {
+  function _CITE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_CITE, args, function(){});
-  };
+    _CITE.__super__.constructor.apply(this, ["cite"].concat(slice.call(args)));
+  }
 
-  _CODE = (function(superClass) {
-    extend(_CODE, superClass);
+  return _CITE;
 
-    function _CODE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _CODE.__super__.constructor.apply(this, ["code"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _CODE;
+CITE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_CITE, args, function(){});
+};
 
-  })(XML);
+_CODE = (function(superClass) {
+  extend(_CODE, superClass);
 
-  CODE = function() {
+  function _CODE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_CODE, args, function(){});
-  };
+    _CODE.__super__.constructor.apply(this, ["code"].concat(slice.call(args)));
+  }
 
-  _COL = (function(superClass) {
-    extend(_COL, superClass);
+  return _CODE;
 
-    function _COL() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _COL.__super__.constructor.apply(this, ["col/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _COL;
+CODE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_CODE, args, function(){});
+};
 
-  })(XML);
+_COL = (function(superClass) {
+  extend(_COL, superClass);
 
-  COL = function() {
+  function _COL() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_COL, args, function(){});
-  };
+    _COL.__super__.constructor.apply(this, ["col/"].concat(slice.call(args)));
+  }
 
-  _COLGROUP = (function(superClass) {
-    extend(_COLGROUP, superClass);
+  return _COL;
 
-    function _COLGROUP() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _COLGROUP.__super__.constructor.apply(this, ["colgroup"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _COLGROUP;
+COL = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_COL, args, function(){});
+};
 
-  })(XML);
+_COLGROUP = (function(superClass) {
+  extend(_COLGROUP, superClass);
 
-  COLGROUP = function() {
+  function _COLGROUP() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_COLGROUP, args, function(){});
-  };
+    _COLGROUP.__super__.constructor.apply(this, ["colgroup"].concat(slice.call(args)));
+  }
 
-  _CONTENT = (function(superClass) {
-    extend(_CONTENT, superClass);
+  return _COLGROUP;
 
-    function _CONTENT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _CONTENT.__super__.constructor.apply(this, ["content"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _CONTENT;
+COLGROUP = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_COLGROUP, args, function(){});
+};
 
-  })(XML);
+_CONTENT = (function(superClass) {
+  extend(_CONTENT, superClass);
 
-  CONTENT = function() {
+  function _CONTENT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_CONTENT, args, function(){});
-  };
+    _CONTENT.__super__.constructor.apply(this, ["content"].concat(slice.call(args)));
+  }
 
-  _DATA = (function(superClass) {
-    extend(_DATA, superClass);
+  return _CONTENT;
 
-    function _DATA() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _DATA.__super__.constructor.apply(this, ["data"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _DATA;
+CONTENT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_CONTENT, args, function(){});
+};
 
-  })(XML);
+_DATA = (function(superClass) {
+  extend(_DATA, superClass);
 
-  DATA = function() {
+  function _DATA() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_DATA, args, function(){});
-  };
+    _DATA.__super__.constructor.apply(this, ["data"].concat(slice.call(args)));
+  }
 
-  _DATALIST = (function(superClass) {
-    extend(_DATALIST, superClass);
+  return _DATA;
 
-    function _DATALIST() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _DATALIST.__super__.constructor.apply(this, ["datalist"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _DATALIST;
+DATA = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_DATA, args, function(){});
+};
 
-  })(XML);
+_DATALIST = (function(superClass) {
+  extend(_DATALIST, superClass);
 
-  DATALIST = function() {
+  function _DATALIST() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_DATALIST, args, function(){});
-  };
+    _DATALIST.__super__.constructor.apply(this, ["datalist"].concat(slice.call(args)));
+  }
 
-  _DD = (function(superClass) {
-    extend(_DD, superClass);
+  return _DATALIST;
 
-    function _DD() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _DD.__super__.constructor.apply(this, ["dd"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _DD;
+DATALIST = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_DATALIST, args, function(){});
+};
 
-  })(XML);
+_DD = (function(superClass) {
+  extend(_DD, superClass);
 
-  DD = function() {
+  function _DD() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_DD, args, function(){});
-  };
+    _DD.__super__.constructor.apply(this, ["dd"].concat(slice.call(args)));
+  }
 
-  _DECORATOR = (function(superClass) {
-    extend(_DECORATOR, superClass);
+  return _DD;
 
-    function _DECORATOR() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _DECORATOR.__super__.constructor.apply(this, ["decorator"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _DECORATOR;
+DD = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_DD, args, function(){});
+};
 
-  })(XML);
+_DECORATOR = (function(superClass) {
+  extend(_DECORATOR, superClass);
 
-  DECORATOR = function() {
+  function _DECORATOR() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_DECORATOR, args, function(){});
-  };
+    _DECORATOR.__super__.constructor.apply(this, ["decorator"].concat(slice.call(args)));
+  }
 
-  _DEL = (function(superClass) {
-    extend(_DEL, superClass);
+  return _DECORATOR;
 
-    function _DEL() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _DEL.__super__.constructor.apply(this, ["del"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _DEL;
+DECORATOR = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_DECORATOR, args, function(){});
+};
 
-  })(XML);
+_DEL = (function(superClass) {
+  extend(_DEL, superClass);
 
-  DEL = function() {
+  function _DEL() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_DEL, args, function(){});
-  };
+    _DEL.__super__.constructor.apply(this, ["del"].concat(slice.call(args)));
+  }
 
-  _DETAILS = (function(superClass) {
-    extend(_DETAILS, superClass);
+  return _DEL;
 
-    function _DETAILS() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _DETAILS.__super__.constructor.apply(this, ["details"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _DETAILS;
+DEL = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_DEL, args, function(){});
+};
 
-  })(XML);
+_DETAILS = (function(superClass) {
+  extend(_DETAILS, superClass);
 
-  DETAILS = function() {
+  function _DETAILS() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_DETAILS, args, function(){});
-  };
+    _DETAILS.__super__.constructor.apply(this, ["details"].concat(slice.call(args)));
+  }
 
-  _DFN = (function(superClass) {
-    extend(_DFN, superClass);
+  return _DETAILS;
 
-    function _DFN() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _DFN.__super__.constructor.apply(this, ["dfn"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _DFN;
+DETAILS = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_DETAILS, args, function(){});
+};
 
-  })(XML);
+_DFN = (function(superClass) {
+  extend(_DFN, superClass);
 
-  DFN = function() {
+  function _DFN() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_DFN, args, function(){});
-  };
+    _DFN.__super__.constructor.apply(this, ["dfn"].concat(slice.call(args)));
+  }
 
-  _DIR = (function(superClass) {
-    extend(_DIR, superClass);
+  return _DFN;
 
-    function _DIR() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _DIR.__super__.constructor.apply(this, ["dir"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _DIR;
+DFN = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_DFN, args, function(){});
+};
 
-  })(XML);
+_DIR = (function(superClass) {
+  extend(_DIR, superClass);
 
-  DIR = function() {
+  function _DIR() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_DIR, args, function(){});
-  };
+    _DIR.__super__.constructor.apply(this, ["dir"].concat(slice.call(args)));
+  }
 
-  _DIV = (function(superClass) {
-    extend(_DIV, superClass);
+  return _DIR;
 
-    function _DIV() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _DIV.__super__.constructor.apply(this, ["div"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _DIV;
+DIR = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_DIR, args, function(){});
+};
 
-  })(XML);
+_DIV = (function(superClass) {
+  extend(_DIV, superClass);
 
-  DIV = function() {
+  function _DIV() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_DIV, args, function(){});
-  };
+    _DIV.__super__.constructor.apply(this, ["div"].concat(slice.call(args)));
+  }
 
-  _DL = (function(superClass) {
-    extend(_DL, superClass);
+  return _DIV;
 
-    function _DL() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _DL.__super__.constructor.apply(this, ["dl"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _DL;
+DIV = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_DIV, args, function(){});
+};
 
-  })(XML);
+_DL = (function(superClass) {
+  extend(_DL, superClass);
 
-  DL = function() {
+  function _DL() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_DL, args, function(){});
-  };
+    _DL.__super__.constructor.apply(this, ["dl"].concat(slice.call(args)));
+  }
 
-  _DT = (function(superClass) {
-    extend(_DT, superClass);
+  return _DL;
 
-    function _DT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _DT.__super__.constructor.apply(this, ["dt"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _DT;
+DL = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_DL, args, function(){});
+};
 
-  })(XML);
+_DT = (function(superClass) {
+  extend(_DT, superClass);
 
-  DT = function() {
+  function _DT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_DT, args, function(){});
-  };
+    _DT.__super__.constructor.apply(this, ["dt"].concat(slice.call(args)));
+  }
 
-  _ELEMENT = (function(superClass) {
-    extend(_ELEMENT, superClass);
+  return _DT;
 
-    function _ELEMENT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _ELEMENT.__super__.constructor.apply(this, ["element"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _ELEMENT;
+DT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_DT, args, function(){});
+};
 
-  })(XML);
+_ELEMENT = (function(superClass) {
+  extend(_ELEMENT, superClass);
 
-  ELEMENT = function() {
+  function _ELEMENT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_ELEMENT, args, function(){});
-  };
+    _ELEMENT.__super__.constructor.apply(this, ["element"].concat(slice.call(args)));
+  }
 
-  _EM = (function(superClass) {
-    extend(_EM, superClass);
+  return _ELEMENT;
 
-    function _EM() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _EM.__super__.constructor.apply(this, ["em"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _EM;
+ELEMENT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_ELEMENT, args, function(){});
+};
 
-  })(XML);
+_EM = (function(superClass) {
+  extend(_EM, superClass);
 
-  EM = function() {
+  function _EM() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_EM, args, function(){});
-  };
+    _EM.__super__.constructor.apply(this, ["em"].concat(slice.call(args)));
+  }
 
-  _EMBED = (function(superClass) {
-    extend(_EMBED, superClass);
+  return _EM;
 
-    function _EMBED() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _EMBED.__super__.constructor.apply(this, ["embed/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _EMBED;
+EM = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_EM, args, function(){});
+};
 
-  })(XML);
+_EMBED = (function(superClass) {
+  extend(_EMBED, superClass);
 
-  EMBED = function() {
+  function _EMBED() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_EMBED, args, function(){});
-  };
+    _EMBED.__super__.constructor.apply(this, ["embed/"].concat(slice.call(args)));
+  }
 
-  _FIELDSET = (function(superClass) {
-    extend(_FIELDSET, superClass);
+  return _EMBED;
 
-    function _FIELDSET() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _FIELDSET.__super__.constructor.apply(this, ["fieldset"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _FIELDSET;
+EMBED = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_EMBED, args, function(){});
+};
 
-  })(XML);
+_FIELDSET = (function(superClass) {
+  extend(_FIELDSET, superClass);
 
-  FIELDSET = function() {
+  function _FIELDSET() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_FIELDSET, args, function(){});
-  };
+    _FIELDSET.__super__.constructor.apply(this, ["fieldset"].concat(slice.call(args)));
+  }
 
-  _FIGCAPTION = (function(superClass) {
-    extend(_FIGCAPTION, superClass);
+  return _FIELDSET;
 
-    function _FIGCAPTION() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _FIGCAPTION.__super__.constructor.apply(this, ["figcaption"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _FIGCAPTION;
+FIELDSET = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_FIELDSET, args, function(){});
+};
 
-  })(XML);
+_FIGCAPTION = (function(superClass) {
+  extend(_FIGCAPTION, superClass);
 
-  FIGCAPTION = function() {
+  function _FIGCAPTION() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_FIGCAPTION, args, function(){});
-  };
+    _FIGCAPTION.__super__.constructor.apply(this, ["figcaption"].concat(slice.call(args)));
+  }
 
-  _FIGURE = (function(superClass) {
-    extend(_FIGURE, superClass);
+  return _FIGCAPTION;
 
-    function _FIGURE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _FIGURE.__super__.constructor.apply(this, ["figure"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _FIGURE;
+FIGCAPTION = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_FIGCAPTION, args, function(){});
+};
 
-  })(XML);
+_FIGURE = (function(superClass) {
+  extend(_FIGURE, superClass);
 
-  FIGURE = function() {
+  function _FIGURE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_FIGURE, args, function(){});
-  };
+    _FIGURE.__super__.constructor.apply(this, ["figure"].concat(slice.call(args)));
+  }
 
-  _FONT = (function(superClass) {
-    extend(_FONT, superClass);
+  return _FIGURE;
 
-    function _FONT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _FONT.__super__.constructor.apply(this, ["font"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _FONT;
+FIGURE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_FIGURE, args, function(){});
+};
 
-  })(XML);
+_FONT = (function(superClass) {
+  extend(_FONT, superClass);
 
-  FONT = function() {
+  function _FONT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_FONT, args, function(){});
-  };
+    _FONT.__super__.constructor.apply(this, ["font"].concat(slice.call(args)));
+  }
 
-  _FOOTER = (function(superClass) {
-    extend(_FOOTER, superClass);
+  return _FONT;
 
-    function _FOOTER() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _FOOTER.__super__.constructor.apply(this, ["footer"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _FOOTER;
+FONT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_FONT, args, function(){});
+};
 
-  })(XML);
+_FOOTER = (function(superClass) {
+  extend(_FOOTER, superClass);
 
-  FOOTER = function() {
+  function _FOOTER() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_FOOTER, args, function(){});
-  };
+    _FOOTER.__super__.constructor.apply(this, ["footer"].concat(slice.call(args)));
+  }
 
-  _FORM = (function(superClass) {
-    extend(_FORM, superClass);
+  return _FOOTER;
 
-    function _FORM() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _FORM.__super__.constructor.apply(this, ["form"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _FORM;
+FOOTER = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_FOOTER, args, function(){});
+};
 
-  })(XML);
+_FORM = (function(superClass) {
+  extend(_FORM, superClass);
 
-  FORM = function() {
+  function _FORM() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_FORM, args, function(){});
-  };
+    _FORM.__super__.constructor.apply(this, ["form"].concat(slice.call(args)));
+  }
 
-  _FRAME = (function(superClass) {
-    extend(_FRAME, superClass);
+  return _FORM;
 
-    function _FRAME() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _FRAME.__super__.constructor.apply(this, ["frame"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _FRAME;
+FORM = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_FORM, args, function(){});
+};
 
-  })(XML);
+_FRAME = (function(superClass) {
+  extend(_FRAME, superClass);
 
-  FRAME = function() {
+  function _FRAME() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_FRAME, args, function(){});
-  };
+    _FRAME.__super__.constructor.apply(this, ["frame"].concat(slice.call(args)));
+  }
 
-  _FRAMESET = (function(superClass) {
-    extend(_FRAMESET, superClass);
+  return _FRAME;
 
-    function _FRAMESET() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _FRAMESET.__super__.constructor.apply(this, ["frameset"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _FRAMESET;
+FRAME = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_FRAME, args, function(){});
+};
 
-  })(XML);
+_FRAMESET = (function(superClass) {
+  extend(_FRAMESET, superClass);
 
-  FRAMESET = function() {
+  function _FRAMESET() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_FRAMESET, args, function(){});
-  };
+    _FRAMESET.__super__.constructor.apply(this, ["frameset"].concat(slice.call(args)));
+  }
 
-  _H1 = (function(superClass) {
-    extend(_H1, superClass);
+  return _FRAMESET;
 
-    function _H1() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _H1.__super__.constructor.apply(this, ["h1"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _H1;
+FRAMESET = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_FRAMESET, args, function(){});
+};
 
-  })(XML);
+_H1 = (function(superClass) {
+  extend(_H1, superClass);
 
-  H1 = function() {
+  function _H1() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_H1, args, function(){});
-  };
+    _H1.__super__.constructor.apply(this, ["h1"].concat(slice.call(args)));
+  }
 
-  _H2 = (function(superClass) {
-    extend(_H2, superClass);
+  return _H1;
 
-    function _H2() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _H2.__super__.constructor.apply(this, ["h2"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _H2;
+H1 = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_H1, args, function(){});
+};
 
-  })(XML);
+_H2 = (function(superClass) {
+  extend(_H2, superClass);
 
-  H2 = function() {
+  function _H2() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_H2, args, function(){});
-  };
+    _H2.__super__.constructor.apply(this, ["h2"].concat(slice.call(args)));
+  }
 
-  _H3 = (function(superClass) {
-    extend(_H3, superClass);
+  return _H2;
 
-    function _H3() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _H3.__super__.constructor.apply(this, ["h3"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _H3;
+H2 = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_H2, args, function(){});
+};
 
-  })(XML);
+_H3 = (function(superClass) {
+  extend(_H3, superClass);
 
-  H3 = function() {
+  function _H3() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_H3, args, function(){});
-  };
+    _H3.__super__.constructor.apply(this, ["h3"].concat(slice.call(args)));
+  }
 
-  _H4 = (function(superClass) {
-    extend(_H4, superClass);
+  return _H3;
 
-    function _H4() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _H4.__super__.constructor.apply(this, ["h4"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _H4;
+H3 = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_H3, args, function(){});
+};
 
-  })(XML);
+_H4 = (function(superClass) {
+  extend(_H4, superClass);
 
-  H4 = function() {
+  function _H4() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_H4, args, function(){});
-  };
+    _H4.__super__.constructor.apply(this, ["h4"].concat(slice.call(args)));
+  }
 
-  _H5 = (function(superClass) {
-    extend(_H5, superClass);
+  return _H4;
 
-    function _H5() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _H5.__super__.constructor.apply(this, ["h5"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _H5;
+H4 = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_H4, args, function(){});
+};
 
-  })(XML);
+_H5 = (function(superClass) {
+  extend(_H5, superClass);
 
-  H5 = function() {
+  function _H5() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_H5, args, function(){});
-  };
+    _H5.__super__.constructor.apply(this, ["h5"].concat(slice.call(args)));
+  }
 
-  _H6 = (function(superClass) {
-    extend(_H6, superClass);
+  return _H5;
 
-    function _H6() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _H6.__super__.constructor.apply(this, ["h6"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _H6;
+H5 = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_H5, args, function(){});
+};
 
-  })(XML);
+_H6 = (function(superClass) {
+  extend(_H6, superClass);
 
-  H6 = function() {
+  function _H6() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_H6, args, function(){});
-  };
+    _H6.__super__.constructor.apply(this, ["h6"].concat(slice.call(args)));
+  }
 
-  _HEAD = (function(superClass) {
-    extend(_HEAD, superClass);
+  return _H6;
 
-    function _HEAD() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _HEAD.__super__.constructor.apply(this, ["head"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _HEAD;
+H6 = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_H6, args, function(){});
+};
 
-  })(XML);
+_HEAD = (function(superClass) {
+  extend(_HEAD, superClass);
 
-  HEAD = function() {
+  function _HEAD() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_HEAD, args, function(){});
-  };
+    _HEAD.__super__.constructor.apply(this, ["head"].concat(slice.call(args)));
+  }
 
-  _HEADER = (function(superClass) {
-    extend(_HEADER, superClass);
+  return _HEAD;
 
-    function _HEADER() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _HEADER.__super__.constructor.apply(this, ["header"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _HEADER;
+HEAD = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_HEAD, args, function(){});
+};
 
-  })(XML);
+_HEADER = (function(superClass) {
+  extend(_HEADER, superClass);
 
-  HEADER = function() {
+  function _HEADER() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_HEADER, args, function(){});
-  };
+    _HEADER.__super__.constructor.apply(this, ["header"].concat(slice.call(args)));
+  }
 
-  _HGROUP = (function(superClass) {
-    extend(_HGROUP, superClass);
+  return _HEADER;
 
-    function _HGROUP() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _HGROUP.__super__.constructor.apply(this, ["hgroup"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _HGROUP;
+HEADER = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_HEADER, args, function(){});
+};
 
-  })(XML);
+_HGROUP = (function(superClass) {
+  extend(_HGROUP, superClass);
 
-  HGROUP = function() {
+  function _HGROUP() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_HGROUP, args, function(){});
-  };
+    _HGROUP.__super__.constructor.apply(this, ["hgroup"].concat(slice.call(args)));
+  }
 
-  _HR = (function(superClass) {
-    extend(_HR, superClass);
+  return _HGROUP;
 
-    function _HR() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _HR.__super__.constructor.apply(this, ["hr/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _HR;
+HGROUP = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_HGROUP, args, function(){});
+};
 
-  })(XML);
+_HR = (function(superClass) {
+  extend(_HR, superClass);
 
-  HR = function() {
+  function _HR() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_HR, args, function(){});
-  };
+    _HR.__super__.constructor.apply(this, ["hr/"].concat(slice.call(args)));
+  }
 
-  _HTML = (function(superClass) {
-    extend(_HTML, superClass);
+  return _HR;
 
-    function _HTML() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _HTML.__super__.constructor.apply(this, ["html"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _HTML;
+HR = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_HR, args, function(){});
+};
 
-  })(XML);
+_HTML = (function(superClass) {
+  extend(_HTML, superClass);
 
-  HTML = function() {
+  function _HTML() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_HTML, args, function(){});
-  };
+    _HTML.__super__.constructor.apply(this, ["html"].concat(slice.call(args)));
+  }
 
-  _I = (function(superClass) {
-    extend(_I, superClass);
+  return _HTML;
 
-    function _I() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _I.__super__.constructor.apply(this, ["i"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _I;
+HTML = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_HTML, args, function(){});
+};
 
-  })(XML);
+_I = (function(superClass) {
+  extend(_I, superClass);
 
-  I = function() {
+  function _I() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_I, args, function(){});
-  };
+    _I.__super__.constructor.apply(this, ["i"].concat(slice.call(args)));
+  }
 
-  _IFRAME = (function(superClass) {
-    extend(_IFRAME, superClass);
+  return _I;
 
-    function _IFRAME() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _IFRAME.__super__.constructor.apply(this, ["iframe"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _IFRAME;
+I = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_I, args, function(){});
+};
 
-  })(XML);
+_IFRAME = (function(superClass) {
+  extend(_IFRAME, superClass);
 
-  IFRAME = function() {
+  function _IFRAME() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_IFRAME, args, function(){});
-  };
+    _IFRAME.__super__.constructor.apply(this, ["iframe"].concat(slice.call(args)));
+  }
 
-  _IMG = (function(superClass) {
-    extend(_IMG, superClass);
+  return _IFRAME;
 
-    function _IMG() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _IMG.__super__.constructor.apply(this, ["img/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _IMG;
+IFRAME = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_IFRAME, args, function(){});
+};
 
-  })(XML);
+_IMG = (function(superClass) {
+  extend(_IMG, superClass);
 
-  IMG = function() {
+  function _IMG() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_IMG, args, function(){});
-  };
+    _IMG.__super__.constructor.apply(this, ["img/"].concat(slice.call(args)));
+  }
 
-  _INPUT = (function(superClass) {
-    extend(_INPUT, superClass);
+  return _IMG;
 
-    function _INPUT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _INPUT.__super__.constructor.apply(this, ["input/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _INPUT;
+IMG = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_IMG, args, function(){});
+};
 
-  })(XML);
+_INPUT = (function(superClass) {
+  extend(_INPUT, superClass);
 
-  INPUT = function() {
+  function _INPUT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_INPUT, args, function(){});
-  };
+    _INPUT.__super__.constructor.apply(this, ["input/"].concat(slice.call(args)));
+  }
 
-  _INS = (function(superClass) {
-    extend(_INS, superClass);
+  return _INPUT;
 
-    function _INS() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _INS.__super__.constructor.apply(this, ["ins"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _INS;
+INPUT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_INPUT, args, function(){});
+};
 
-  })(XML);
+_INS = (function(superClass) {
+  extend(_INS, superClass);
 
-  INS = function() {
+  function _INS() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_INS, args, function(){});
-  };
+    _INS.__super__.constructor.apply(this, ["ins"].concat(slice.call(args)));
+  }
 
-  _ISINDEX = (function(superClass) {
-    extend(_ISINDEX, superClass);
+  return _INS;
 
-    function _ISINDEX() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _ISINDEX.__super__.constructor.apply(this, ["isindex"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _ISINDEX;
+INS = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_INS, args, function(){});
+};
 
-  })(XML);
+_ISINDEX = (function(superClass) {
+  extend(_ISINDEX, superClass);
 
-  ISINDEX = function() {
+  function _ISINDEX() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_ISINDEX, args, function(){});
-  };
+    _ISINDEX.__super__.constructor.apply(this, ["isindex"].concat(slice.call(args)));
+  }
 
-  _KBD = (function(superClass) {
-    extend(_KBD, superClass);
+  return _ISINDEX;
 
-    function _KBD() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _KBD.__super__.constructor.apply(this, ["kbd"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _KBD;
+ISINDEX = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_ISINDEX, args, function(){});
+};
 
-  })(XML);
+_KBD = (function(superClass) {
+  extend(_KBD, superClass);
 
-  KBD = function() {
+  function _KBD() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_KBD, args, function(){});
-  };
+    _KBD.__super__.constructor.apply(this, ["kbd"].concat(slice.call(args)));
+  }
 
-  _KEYGEN = (function(superClass) {
-    extend(_KEYGEN, superClass);
+  return _KBD;
 
-    function _KEYGEN() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _KEYGEN.__super__.constructor.apply(this, ["keygen/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _KEYGEN;
+KBD = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_KBD, args, function(){});
+};
 
-  })(XML);
+_KEYGEN = (function(superClass) {
+  extend(_KEYGEN, superClass);
 
-  KEYGEN = function() {
+  function _KEYGEN() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_KEYGEN, args, function(){});
-  };
+    _KEYGEN.__super__.constructor.apply(this, ["keygen/"].concat(slice.call(args)));
+  }
 
-  _LABEL = (function(superClass) {
-    extend(_LABEL, superClass);
+  return _KEYGEN;
 
-    function _LABEL() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _LABEL.__super__.constructor.apply(this, ["label"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _LABEL;
+KEYGEN = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_KEYGEN, args, function(){});
+};
 
-  })(XML);
+_LABEL = (function(superClass) {
+  extend(_LABEL, superClass);
 
-  LABEL = function() {
+  function _LABEL() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_LABEL, args, function(){});
-  };
+    _LABEL.__super__.constructor.apply(this, ["label"].concat(slice.call(args)));
+  }
 
-  _LEGEND = (function(superClass) {
-    extend(_LEGEND, superClass);
+  return _LABEL;
 
-    function _LEGEND() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _LEGEND.__super__.constructor.apply(this, ["legend"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _LEGEND;
+LABEL = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_LABEL, args, function(){});
+};
 
-  })(XML);
+_LEGEND = (function(superClass) {
+  extend(_LEGEND, superClass);
 
-  LEGEND = function() {
+  function _LEGEND() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_LEGEND, args, function(){});
-  };
+    _LEGEND.__super__.constructor.apply(this, ["legend"].concat(slice.call(args)));
+  }
 
-  _LI = (function(superClass) {
-    extend(_LI, superClass);
+  return _LEGEND;
 
-    function _LI() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _LI.__super__.constructor.apply(this, ["li"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _LI;
+LEGEND = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_LEGEND, args, function(){});
+};
 
-  })(XML);
+_LI = (function(superClass) {
+  extend(_LI, superClass);
 
-  LI = function() {
+  function _LI() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_LI, args, function(){});
-  };
+    _LI.__super__.constructor.apply(this, ["li"].concat(slice.call(args)));
+  }
 
-  _LINK = (function(superClass) {
-    extend(_LINK, superClass);
+  return _LI;
 
-    function _LINK() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _LINK.__super__.constructor.apply(this, ["link/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _LINK;
+LI = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_LI, args, function(){});
+};
 
-  })(XML);
+_LINK = (function(superClass) {
+  extend(_LINK, superClass);
 
-  LINK = function() {
+  function _LINK() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_LINK, args, function(){});
-  };
+    _LINK.__super__.constructor.apply(this, ["link/"].concat(slice.call(args)));
+  }
 
-  _LISTING = (function(superClass) {
-    extend(_LISTING, superClass);
+  return _LINK;
 
-    function _LISTING() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _LISTING.__super__.constructor.apply(this, ["listing"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _LISTING;
+LINK = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_LINK, args, function(){});
+};
 
-  })(XML);
+_LISTING = (function(superClass) {
+  extend(_LISTING, superClass);
 
-  LISTING = function() {
+  function _LISTING() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_LISTING, args, function(){});
-  };
+    _LISTING.__super__.constructor.apply(this, ["listing"].concat(slice.call(args)));
+  }
 
-  _MAIN = (function(superClass) {
-    extend(_MAIN, superClass);
+  return _LISTING;
 
-    function _MAIN() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _MAIN.__super__.constructor.apply(this, ["main"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _MAIN;
+LISTING = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_LISTING, args, function(){});
+};
 
-  })(XML);
+_MAIN = (function(superClass) {
+  extend(_MAIN, superClass);
 
-  MAIN = function() {
+  function _MAIN() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_MAIN, args, function(){});
-  };
+    _MAIN.__super__.constructor.apply(this, ["main"].concat(slice.call(args)));
+  }
 
-  _MAP = (function(superClass) {
-    extend(_MAP, superClass);
+  return _MAIN;
 
-    function _MAP() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _MAP.__super__.constructor.apply(this, ["map"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _MAP;
+MAIN = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_MAIN, args, function(){});
+};
 
-  })(XML);
+_MAP = (function(superClass) {
+  extend(_MAP, superClass);
 
-  MAP = function() {
+  function _MAP() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_MAP, args, function(){});
-  };
+    _MAP.__super__.constructor.apply(this, ["map"].concat(slice.call(args)));
+  }
 
-  _MARK = (function(superClass) {
-    extend(_MARK, superClass);
+  return _MAP;
 
-    function _MARK() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _MARK.__super__.constructor.apply(this, ["mark"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _MARK;
+MAP = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_MAP, args, function(){});
+};
 
-  })(XML);
+_MARK = (function(superClass) {
+  extend(_MARK, superClass);
 
-  MARK = function() {
+  function _MARK() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_MARK, args, function(){});
-  };
+    _MARK.__super__.constructor.apply(this, ["mark"].concat(slice.call(args)));
+  }
 
-  _MARQUEE = (function(superClass) {
-    extend(_MARQUEE, superClass);
+  return _MARK;
 
-    function _MARQUEE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _MARQUEE.__super__.constructor.apply(this, ["marquee"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _MARQUEE;
+MARK = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_MARK, args, function(){});
+};
 
-  })(XML);
+_MARQUEE = (function(superClass) {
+  extend(_MARQUEE, superClass);
 
-  MARQUEE = function() {
+  function _MARQUEE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_MARQUEE, args, function(){});
-  };
+    _MARQUEE.__super__.constructor.apply(this, ["marquee"].concat(slice.call(args)));
+  }
 
-  _MENU = (function(superClass) {
-    extend(_MENU, superClass);
+  return _MARQUEE;
 
-    function _MENU() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _MENU.__super__.constructor.apply(this, ["menu"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _MENU;
+MARQUEE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_MARQUEE, args, function(){});
+};
 
-  })(XML);
+_MENU = (function(superClass) {
+  extend(_MENU, superClass);
 
-  MENU = function() {
+  function _MENU() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_MENU, args, function(){});
-  };
+    _MENU.__super__.constructor.apply(this, ["menu"].concat(slice.call(args)));
+  }
 
-  _MENUITEM = (function(superClass) {
-    extend(_MENUITEM, superClass);
+  return _MENU;
 
-    function _MENUITEM() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _MENUITEM.__super__.constructor.apply(this, ["menuitem"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _MENUITEM;
+MENU = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_MENU, args, function(){});
+};
 
-  })(XML);
+_MENUITEM = (function(superClass) {
+  extend(_MENUITEM, superClass);
 
-  MENUITEM = function() {
+  function _MENUITEM() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_MENUITEM, args, function(){});
-  };
+    _MENUITEM.__super__.constructor.apply(this, ["menuitem"].concat(slice.call(args)));
+  }
 
-  _META = (function(superClass) {
-    extend(_META, superClass);
+  return _MENUITEM;
 
-    function _META() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _META.__super__.constructor.apply(this, ["meta/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _META;
+MENUITEM = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_MENUITEM, args, function(){});
+};
 
-  })(XML);
+_META = (function(superClass) {
+  extend(_META, superClass);
 
-  META = function() {
+  function _META() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_META, args, function(){});
-  };
+    _META.__super__.constructor.apply(this, ["meta/"].concat(slice.call(args)));
+  }
 
-  _METER = (function(superClass) {
-    extend(_METER, superClass);
+  return _META;
 
-    function _METER() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _METER.__super__.constructor.apply(this, ["meter"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _METER;
+META = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_META, args, function(){});
+};
 
-  })(XML);
+_METER = (function(superClass) {
+  extend(_METER, superClass);
 
-  METER = function() {
+  function _METER() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_METER, args, function(){});
-  };
+    _METER.__super__.constructor.apply(this, ["meter"].concat(slice.call(args)));
+  }
 
-  _NAV = (function(superClass) {
-    extend(_NAV, superClass);
+  return _METER;
 
-    function _NAV() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _NAV.__super__.constructor.apply(this, ["nav"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _NAV;
+METER = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_METER, args, function(){});
+};
 
-  })(XML);
+_NAV = (function(superClass) {
+  extend(_NAV, superClass);
 
-  NAV = function() {
+  function _NAV() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_NAV, args, function(){});
-  };
+    _NAV.__super__.constructor.apply(this, ["nav"].concat(slice.call(args)));
+  }
 
-  _NOBR = (function(superClass) {
-    extend(_NOBR, superClass);
+  return _NAV;
 
-    function _NOBR() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _NOBR.__super__.constructor.apply(this, ["nobr"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _NOBR;
+NAV = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_NAV, args, function(){});
+};
 
-  })(XML);
+_NOBR = (function(superClass) {
+  extend(_NOBR, superClass);
 
-  NOBR = function() {
+  function _NOBR() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_NOBR, args, function(){});
-  };
+    _NOBR.__super__.constructor.apply(this, ["nobr"].concat(slice.call(args)));
+  }
 
-  _NOFRAMES = (function(superClass) {
-    extend(_NOFRAMES, superClass);
+  return _NOBR;
 
-    function _NOFRAMES() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _NOFRAMES.__super__.constructor.apply(this, ["noframes"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _NOFRAMES;
+NOBR = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_NOBR, args, function(){});
+};
 
-  })(XML);
+_NOFRAMES = (function(superClass) {
+  extend(_NOFRAMES, superClass);
 
-  NOFRAMES = function() {
+  function _NOFRAMES() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_NOFRAMES, args, function(){});
-  };
+    _NOFRAMES.__super__.constructor.apply(this, ["noframes"].concat(slice.call(args)));
+  }
 
-  _NOSCRIPT = (function(superClass) {
-    extend(_NOSCRIPT, superClass);
+  return _NOFRAMES;
 
-    function _NOSCRIPT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _NOSCRIPT.__super__.constructor.apply(this, ["noscript"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _NOSCRIPT;
+NOFRAMES = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_NOFRAMES, args, function(){});
+};
 
-  })(XML);
+_NOSCRIPT = (function(superClass) {
+  extend(_NOSCRIPT, superClass);
 
-  NOSCRIPT = function() {
+  function _NOSCRIPT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_NOSCRIPT, args, function(){});
-  };
+    _NOSCRIPT.__super__.constructor.apply(this, ["noscript"].concat(slice.call(args)));
+  }
 
-  _OBJECT = (function(superClass) {
-    extend(_OBJECT, superClass);
+  return _NOSCRIPT;
 
-    function _OBJECT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _OBJECT.__super__.constructor.apply(this, ["object"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _OBJECT;
+NOSCRIPT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_NOSCRIPT, args, function(){});
+};
 
-  })(XML);
+_OBJECT = (function(superClass) {
+  extend(_OBJECT, superClass);
 
-  OBJECT = function() {
+  function _OBJECT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_OBJECT, args, function(){});
-  };
+    _OBJECT.__super__.constructor.apply(this, ["object"].concat(slice.call(args)));
+  }
 
-  _OL = (function(superClass) {
-    extend(_OL, superClass);
+  return _OBJECT;
 
-    function _OL() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _OL.__super__.constructor.apply(this, ["ol"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _OL;
+OBJECT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_OBJECT, args, function(){});
+};
 
-  })(XML);
+_OL = (function(superClass) {
+  extend(_OL, superClass);
 
-  OL = function() {
+  function _OL() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_OL, args, function(){});
-  };
+    _OL.__super__.constructor.apply(this, ["ol"].concat(slice.call(args)));
+  }
 
-  _OPTGROUP = (function(superClass) {
-    extend(_OPTGROUP, superClass);
+  return _OL;
 
-    function _OPTGROUP() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _OPTGROUP.__super__.constructor.apply(this, ["optgroup"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _OPTGROUP;
+OL = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_OL, args, function(){});
+};
 
-  })(XML);
+_OPTGROUP = (function(superClass) {
+  extend(_OPTGROUP, superClass);
 
-  OPTGROUP = function() {
+  function _OPTGROUP() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_OPTGROUP, args, function(){});
-  };
+    _OPTGROUP.__super__.constructor.apply(this, ["optgroup"].concat(slice.call(args)));
+  }
 
-  _OPTION = (function(superClass) {
-    extend(_OPTION, superClass);
+  return _OPTGROUP;
 
-    function _OPTION() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _OPTION.__super__.constructor.apply(this, ["option"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _OPTION;
+OPTGROUP = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_OPTGROUP, args, function(){});
+};
 
-  })(XML);
+_OPTION = (function(superClass) {
+  extend(_OPTION, superClass);
 
-  OPTION = function() {
+  function _OPTION() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_OPTION, args, function(){});
-  };
+    _OPTION.__super__.constructor.apply(this, ["option"].concat(slice.call(args)));
+  }
 
-  _OUTPUT = (function(superClass) {
-    extend(_OUTPUT, superClass);
+  return _OPTION;
 
-    function _OUTPUT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _OUTPUT.__super__.constructor.apply(this, ["output"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _OUTPUT;
+OPTION = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_OPTION, args, function(){});
+};
 
-  })(XML);
+_OUTPUT = (function(superClass) {
+  extend(_OUTPUT, superClass);
 
-  OUTPUT = function() {
+  function _OUTPUT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_OUTPUT, args, function(){});
-  };
+    _OUTPUT.__super__.constructor.apply(this, ["output"].concat(slice.call(args)));
+  }
 
-  _P = (function(superClass) {
-    extend(_P, superClass);
+  return _OUTPUT;
 
-    function _P() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _P.__super__.constructor.apply(this, ["p"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _P;
+OUTPUT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_OUTPUT, args, function(){});
+};
 
-  })(XML);
+_P = (function(superClass) {
+  extend(_P, superClass);
 
-  P = function() {
+  function _P() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_P, args, function(){});
-  };
+    _P.__super__.constructor.apply(this, ["p"].concat(slice.call(args)));
+  }
 
-  _PARAM = (function(superClass) {
-    extend(_PARAM, superClass);
+  return _P;
 
-    function _PARAM() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _PARAM.__super__.constructor.apply(this, ["param/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _PARAM;
+P = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_P, args, function(){});
+};
 
-  })(XML);
+_PARAM = (function(superClass) {
+  extend(_PARAM, superClass);
 
-  PARAM = function() {
+  function _PARAM() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_PARAM, args, function(){});
-  };
+    _PARAM.__super__.constructor.apply(this, ["param/"].concat(slice.call(args)));
+  }
 
-  _PLAINTEXT = (function(superClass) {
-    extend(_PLAINTEXT, superClass);
+  return _PARAM;
 
-    function _PLAINTEXT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _PLAINTEXT.__super__.constructor.apply(this, ["plaintext"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _PLAINTEXT;
+PARAM = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_PARAM, args, function(){});
+};
 
-  })(XML);
+_PLAINTEXT = (function(superClass) {
+  extend(_PLAINTEXT, superClass);
 
-  PLAINTEXT = function() {
+  function _PLAINTEXT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_PLAINTEXT, args, function(){});
-  };
+    _PLAINTEXT.__super__.constructor.apply(this, ["plaintext"].concat(slice.call(args)));
+  }
 
-  _PRE = (function(superClass) {
-    extend(_PRE, superClass);
+  return _PLAINTEXT;
 
-    function _PRE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _PRE.__super__.constructor.apply(this, ["pre"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _PRE;
+PLAINTEXT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_PLAINTEXT, args, function(){});
+};
 
-  })(XML);
+_PRE = (function(superClass) {
+  extend(_PRE, superClass);
 
-  PRE = function() {
+  function _PRE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_PRE, args, function(){});
-  };
+    _PRE.__super__.constructor.apply(this, ["pre"].concat(slice.call(args)));
+  }
 
-  _PROGRESS = (function(superClass) {
-    extend(_PROGRESS, superClass);
+  return _PRE;
 
-    function _PROGRESS() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _PROGRESS.__super__.constructor.apply(this, ["progress"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _PROGRESS;
+PRE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_PRE, args, function(){});
+};
 
-  })(XML);
+_PROGRESS = (function(superClass) {
+  extend(_PROGRESS, superClass);
 
-  PROGRESS = function() {
+  function _PROGRESS() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_PROGRESS, args, function(){});
-  };
+    _PROGRESS.__super__.constructor.apply(this, ["progress"].concat(slice.call(args)));
+  }
 
-  _Q = (function(superClass) {
-    extend(_Q, superClass);
+  return _PROGRESS;
 
-    function _Q() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _Q.__super__.constructor.apply(this, ["q"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _Q;
+PROGRESS = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_PROGRESS, args, function(){});
+};
 
-  })(XML);
+_Q = (function(superClass) {
+  extend(_Q, superClass);
 
-  Q = function() {
+  function _Q() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_Q, args, function(){});
-  };
+    _Q.__super__.constructor.apply(this, ["q"].concat(slice.call(args)));
+  }
 
-  _RP = (function(superClass) {
-    extend(_RP, superClass);
+  return _Q;
 
-    function _RP() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _RP.__super__.constructor.apply(this, ["rp"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _RP;
+Q = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_Q, args, function(){});
+};
 
-  })(XML);
+_RP = (function(superClass) {
+  extend(_RP, superClass);
 
-  RP = function() {
+  function _RP() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_RP, args, function(){});
-  };
+    _RP.__super__.constructor.apply(this, ["rp"].concat(slice.call(args)));
+  }
 
-  _RT = (function(superClass) {
-    extend(_RT, superClass);
+  return _RP;
 
-    function _RT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _RT.__super__.constructor.apply(this, ["rt"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _RT;
+RP = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_RP, args, function(){});
+};
 
-  })(XML);
+_RT = (function(superClass) {
+  extend(_RT, superClass);
 
-  RT = function() {
+  function _RT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_RT, args, function(){});
-  };
+    _RT.__super__.constructor.apply(this, ["rt"].concat(slice.call(args)));
+  }
 
-  _RUBY = (function(superClass) {
-    extend(_RUBY, superClass);
+  return _RT;
 
-    function _RUBY() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _RUBY.__super__.constructor.apply(this, ["ruby"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _RUBY;
+RT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_RT, args, function(){});
+};
 
-  })(XML);
+_RUBY = (function(superClass) {
+  extend(_RUBY, superClass);
 
-  RUBY = function() {
+  function _RUBY() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_RUBY, args, function(){});
-  };
+    _RUBY.__super__.constructor.apply(this, ["ruby"].concat(slice.call(args)));
+  }
 
-  _S = (function(superClass) {
-    extend(_S, superClass);
+  return _RUBY;
 
-    function _S() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _S.__super__.constructor.apply(this, ["s"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _S;
+RUBY = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_RUBY, args, function(){});
+};
 
-  })(XML);
+_S = (function(superClass) {
+  extend(_S, superClass);
 
-  S = function() {
+  function _S() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_S, args, function(){});
-  };
+    _S.__super__.constructor.apply(this, ["s"].concat(slice.call(args)));
+  }
 
-  _SAMP = (function(superClass) {
-    extend(_SAMP, superClass);
+  return _S;
 
-    function _SAMP() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SAMP.__super__.constructor.apply(this, ["samp"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SAMP;
+S = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_S, args, function(){});
+};
 
-  })(XML);
+_SAMP = (function(superClass) {
+  extend(_SAMP, superClass);
 
-  SAMP = function() {
+  function _SAMP() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SAMP, args, function(){});
-  };
+    _SAMP.__super__.constructor.apply(this, ["samp"].concat(slice.call(args)));
+  }
 
-  _SCRIPT = (function(superClass) {
-    extend(_SCRIPT, superClass);
+  return _SAMP;
 
-    function _SCRIPT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SCRIPT.__super__.constructor.apply(this, ["script"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SCRIPT;
+SAMP = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SAMP, args, function(){});
+};
 
-  })(XML);
+_SCRIPT = (function(superClass) {
+  extend(_SCRIPT, superClass);
 
-  SCRIPT = function() {
+  function _SCRIPT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SCRIPT, args, function(){});
-  };
+    _SCRIPT.__super__.constructor.apply(this, ["script"].concat(slice.call(args)));
+  }
 
-  _SECTION = (function(superClass) {
-    extend(_SECTION, superClass);
+  return _SCRIPT;
 
-    function _SECTION() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SECTION.__super__.constructor.apply(this, ["section"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SECTION;
+SCRIPT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SCRIPT, args, function(){});
+};
 
-  })(XML);
+_SECTION = (function(superClass) {
+  extend(_SECTION, superClass);
 
-  SECTION = function() {
+  function _SECTION() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SECTION, args, function(){});
-  };
+    _SECTION.__super__.constructor.apply(this, ["section"].concat(slice.call(args)));
+  }
 
-  _SELECT = (function(superClass) {
-    extend(_SELECT, superClass);
+  return _SECTION;
 
-    function _SELECT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SELECT.__super__.constructor.apply(this, ["select"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SELECT;
+SECTION = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SECTION, args, function(){});
+};
 
-  })(XML);
+_SELECT = (function(superClass) {
+  extend(_SELECT, superClass);
 
-  SELECT = function() {
+  function _SELECT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SELECT, args, function(){});
-  };
+    _SELECT.__super__.constructor.apply(this, ["select"].concat(slice.call(args)));
+  }
 
-  _SHADOW = (function(superClass) {
-    extend(_SHADOW, superClass);
+  return _SELECT;
 
-    function _SHADOW() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SHADOW.__super__.constructor.apply(this, ["shadow"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SHADOW;
+SELECT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SELECT, args, function(){});
+};
 
-  })(XML);
+_SHADOW = (function(superClass) {
+  extend(_SHADOW, superClass);
 
-  SHADOW = function() {
+  function _SHADOW() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SHADOW, args, function(){});
-  };
+    _SHADOW.__super__.constructor.apply(this, ["shadow"].concat(slice.call(args)));
+  }
 
-  _SMALL = (function(superClass) {
-    extend(_SMALL, superClass);
+  return _SHADOW;
 
-    function _SMALL() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SMALL.__super__.constructor.apply(this, ["small"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SMALL;
+SHADOW = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SHADOW, args, function(){});
+};
 
-  })(XML);
+_SMALL = (function(superClass) {
+  extend(_SMALL, superClass);
 
-  SMALL = function() {
+  function _SMALL() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SMALL, args, function(){});
-  };
+    _SMALL.__super__.constructor.apply(this, ["small"].concat(slice.call(args)));
+  }
 
-  _SOURCE = (function(superClass) {
-    extend(_SOURCE, superClass);
+  return _SMALL;
 
-    function _SOURCE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SOURCE.__super__.constructor.apply(this, ["source/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SOURCE;
+SMALL = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SMALL, args, function(){});
+};
 
-  })(XML);
+_SOURCE = (function(superClass) {
+  extend(_SOURCE, superClass);
 
-  SOURCE = function() {
+  function _SOURCE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SOURCE, args, function(){});
-  };
+    _SOURCE.__super__.constructor.apply(this, ["source/"].concat(slice.call(args)));
+  }
 
-  _SPACER = (function(superClass) {
-    extend(_SPACER, superClass);
+  return _SOURCE;
 
-    function _SPACER() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SPACER.__super__.constructor.apply(this, ["spacer"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SPACER;
+SOURCE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SOURCE, args, function(){});
+};
 
-  })(XML);
+_SPACER = (function(superClass) {
+  extend(_SPACER, superClass);
 
-  SPACER = function() {
+  function _SPACER() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SPACER, args, function(){});
-  };
+    _SPACER.__super__.constructor.apply(this, ["spacer"].concat(slice.call(args)));
+  }
 
-  _SPAN = (function(superClass) {
-    extend(_SPAN, superClass);
+  return _SPACER;
 
-    function _SPAN() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SPAN.__super__.constructor.apply(this, ["span"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SPAN;
+SPACER = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SPACER, args, function(){});
+};
 
-  })(XML);
+_SPAN = (function(superClass) {
+  extend(_SPAN, superClass);
 
-  SPAN = function() {
+  function _SPAN() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SPAN, args, function(){});
-  };
+    _SPAN.__super__.constructor.apply(this, ["span"].concat(slice.call(args)));
+  }
 
-  _STRIKE = (function(superClass) {
-    extend(_STRIKE, superClass);
+  return _SPAN;
 
-    function _STRIKE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _STRIKE.__super__.constructor.apply(this, ["strike"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _STRIKE;
+SPAN = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SPAN, args, function(){});
+};
 
-  })(XML);
+_STRIKE = (function(superClass) {
+  extend(_STRIKE, superClass);
 
-  STRIKE = function() {
+  function _STRIKE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_STRIKE, args, function(){});
-  };
+    _STRIKE.__super__.constructor.apply(this, ["strike"].concat(slice.call(args)));
+  }
 
-  _STRONG = (function(superClass) {
-    extend(_STRONG, superClass);
+  return _STRIKE;
 
-    function _STRONG() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _STRONG.__super__.constructor.apply(this, ["strong"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _STRONG;
+STRIKE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_STRIKE, args, function(){});
+};
 
-  })(XML);
+_STRONG = (function(superClass) {
+  extend(_STRONG, superClass);
 
-  STRONG = function() {
+  function _STRONG() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_STRONG, args, function(){});
-  };
+    _STRONG.__super__.constructor.apply(this, ["strong"].concat(slice.call(args)));
+  }
 
-  _STYLE = (function(superClass) {
-    extend(_STYLE, superClass);
+  return _STRONG;
 
-    function _STYLE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _STYLE.__super__.constructor.apply(this, ["style"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _STYLE;
+STRONG = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_STRONG, args, function(){});
+};
 
-  })(XML);
+_STYLE = (function(superClass) {
+  extend(_STYLE, superClass);
 
-  STYLE = function() {
+  function _STYLE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_STYLE, args, function(){});
-  };
+    _STYLE.__super__.constructor.apply(this, ["style"].concat(slice.call(args)));
+  }
 
-  _SUB = (function(superClass) {
-    extend(_SUB, superClass);
+  return _STYLE;
 
-    function _SUB() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SUB.__super__.constructor.apply(this, ["sub"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SUB;
+STYLE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_STYLE, args, function(){});
+};
 
-  })(XML);
+_SUB = (function(superClass) {
+  extend(_SUB, superClass);
 
-  SUB = function() {
+  function _SUB() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SUB, args, function(){});
-  };
+    _SUB.__super__.constructor.apply(this, ["sub"].concat(slice.call(args)));
+  }
 
-  _SUMMARY = (function(superClass) {
-    extend(_SUMMARY, superClass);
+  return _SUB;
 
-    function _SUMMARY() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SUMMARY.__super__.constructor.apply(this, ["summary"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SUMMARY;
+SUB = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SUB, args, function(){});
+};
 
-  })(XML);
+_SUMMARY = (function(superClass) {
+  extend(_SUMMARY, superClass);
 
-  SUMMARY = function() {
+  function _SUMMARY() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SUMMARY, args, function(){});
-  };
+    _SUMMARY.__super__.constructor.apply(this, ["summary"].concat(slice.call(args)));
+  }
 
-  _SUP = (function(superClass) {
-    extend(_SUP, superClass);
+  return _SUMMARY;
 
-    function _SUP() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _SUP.__super__.constructor.apply(this, ["sup"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _SUP;
+SUMMARY = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SUMMARY, args, function(){});
+};
 
-  })(XML);
+_SUP = (function(superClass) {
+  extend(_SUP, superClass);
 
-  SUP = function() {
+  function _SUP() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_SUP, args, function(){});
-  };
+    _SUP.__super__.constructor.apply(this, ["sup"].concat(slice.call(args)));
+  }
 
-  _TABLE = (function(superClass) {
-    extend(_TABLE, superClass);
+  return _SUP;
 
-    function _TABLE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TABLE.__super__.constructor.apply(this, ["table"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TABLE;
+SUP = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_SUP, args, function(){});
+};
 
-  })(XML);
+_TABLE = (function(superClass) {
+  extend(_TABLE, superClass);
 
-  TABLE = function() {
+  function _TABLE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TABLE, args, function(){});
-  };
+    _TABLE.__super__.constructor.apply(this, ["table"].concat(slice.call(args)));
+  }
 
-  _TBODY = (function(superClass) {
-    extend(_TBODY, superClass);
+  return _TABLE;
 
-    function _TBODY() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TBODY.__super__.constructor.apply(this, ["tbody"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TBODY;
+TABLE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TABLE, args, function(){});
+};
 
-  })(XML);
+_TBODY = (function(superClass) {
+  extend(_TBODY, superClass);
 
-  TBODY = function() {
+  function _TBODY() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TBODY, args, function(){});
-  };
+    _TBODY.__super__.constructor.apply(this, ["tbody"].concat(slice.call(args)));
+  }
 
-  _TD = (function(superClass) {
-    extend(_TD, superClass);
+  return _TBODY;
 
-    function _TD() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TD.__super__.constructor.apply(this, ["td"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TD;
+TBODY = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TBODY, args, function(){});
+};
 
-  })(XML);
+_TD = (function(superClass) {
+  extend(_TD, superClass);
 
-  TD = function() {
+  function _TD() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TD, args, function(){});
-  };
+    _TD.__super__.constructor.apply(this, ["td"].concat(slice.call(args)));
+  }
 
-  _TEMPLATE = (function(superClass) {
-    extend(_TEMPLATE, superClass);
+  return _TD;
 
-    function _TEMPLATE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TEMPLATE.__super__.constructor.apply(this, ["template"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TEMPLATE;
+TD = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TD, args, function(){});
+};
 
-  })(XML);
+_TEMPLATE = (function(superClass) {
+  extend(_TEMPLATE, superClass);
 
-  TEMPLATE = function() {
+  function _TEMPLATE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TEMPLATE, args, function(){});
-  };
+    _TEMPLATE.__super__.constructor.apply(this, ["template"].concat(slice.call(args)));
+  }
 
-  _TEXTAREA = (function(superClass) {
-    extend(_TEXTAREA, superClass);
+  return _TEMPLATE;
 
-    function _TEXTAREA() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TEXTAREA.__super__.constructor.apply(this, ["textarea"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TEXTAREA;
+TEMPLATE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TEMPLATE, args, function(){});
+};
 
-  })(XML);
+_TEXTAREA = (function(superClass) {
+  extend(_TEXTAREA, superClass);
 
-  TEXTAREA = function() {
+  function _TEXTAREA() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TEXTAREA, args, function(){});
-  };
+    _TEXTAREA.__super__.constructor.apply(this, ["textarea"].concat(slice.call(args)));
+  }
 
-  _TFOOT = (function(superClass) {
-    extend(_TFOOT, superClass);
+  return _TEXTAREA;
 
-    function _TFOOT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TFOOT.__super__.constructor.apply(this, ["tfoot"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TFOOT;
+TEXTAREA = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TEXTAREA, args, function(){});
+};
 
-  })(XML);
+_TFOOT = (function(superClass) {
+  extend(_TFOOT, superClass);
 
-  TFOOT = function() {
+  function _TFOOT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TFOOT, args, function(){});
-  };
+    _TFOOT.__super__.constructor.apply(this, ["tfoot"].concat(slice.call(args)));
+  }
 
-  _TH = (function(superClass) {
-    extend(_TH, superClass);
+  return _TFOOT;
 
-    function _TH() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TH.__super__.constructor.apply(this, ["th"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TH;
+TFOOT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TFOOT, args, function(){});
+};
 
-  })(XML);
+_TH = (function(superClass) {
+  extend(_TH, superClass);
 
-  TH = function() {
+  function _TH() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TH, args, function(){});
-  };
+    _TH.__super__.constructor.apply(this, ["th"].concat(slice.call(args)));
+  }
 
-  _THEAD = (function(superClass) {
-    extend(_THEAD, superClass);
+  return _TH;
 
-    function _THEAD() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _THEAD.__super__.constructor.apply(this, ["thead"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _THEAD;
+TH = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TH, args, function(){});
+};
 
-  })(XML);
+_THEAD = (function(superClass) {
+  extend(_THEAD, superClass);
 
-  THEAD = function() {
+  function _THEAD() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_THEAD, args, function(){});
-  };
+    _THEAD.__super__.constructor.apply(this, ["thead"].concat(slice.call(args)));
+  }
 
-  _TIME = (function(superClass) {
-    extend(_TIME, superClass);
+  return _THEAD;
 
-    function _TIME() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TIME.__super__.constructor.apply(this, ["time"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TIME;
+THEAD = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_THEAD, args, function(){});
+};
 
-  })(XML);
+_TIME = (function(superClass) {
+  extend(_TIME, superClass);
 
-  TIME = function() {
+  function _TIME() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TIME, args, function(){});
-  };
+    _TIME.__super__.constructor.apply(this, ["time"].concat(slice.call(args)));
+  }
 
-  _TITLE = (function(superClass) {
-    extend(_TITLE, superClass);
+  return _TIME;
 
-    function _TITLE() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TITLE.__super__.constructor.apply(this, ["title"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TITLE;
+TIME = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TIME, args, function(){});
+};
 
-  })(XML);
+_TITLE = (function(superClass) {
+  extend(_TITLE, superClass);
 
-  TITLE = function() {
+  function _TITLE() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TITLE, args, function(){});
-  };
+    _TITLE.__super__.constructor.apply(this, ["title"].concat(slice.call(args)));
+  }
 
-  _TR = (function(superClass) {
-    extend(_TR, superClass);
+  return _TITLE;
 
-    function _TR() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TR.__super__.constructor.apply(this, ["tr"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TR;
+TITLE = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TITLE, args, function(){});
+};
 
-  })(XML);
+_TR = (function(superClass) {
+  extend(_TR, superClass);
 
-  TR = function() {
+  function _TR() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TR, args, function(){});
-  };
+    _TR.__super__.constructor.apply(this, ["tr"].concat(slice.call(args)));
+  }
 
-  _TRACK = (function(superClass) {
-    extend(_TRACK, superClass);
+  return _TR;
 
-    function _TRACK() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TRACK.__super__.constructor.apply(this, ["track/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TRACK;
+TR = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TR, args, function(){});
+};
 
-  })(XML);
+_TRACK = (function(superClass) {
+  extend(_TRACK, superClass);
 
-  TRACK = function() {
+  function _TRACK() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TRACK, args, function(){});
-  };
+    _TRACK.__super__.constructor.apply(this, ["track/"].concat(slice.call(args)));
+  }
 
-  _TT = (function(superClass) {
-    extend(_TT, superClass);
+  return _TRACK;
 
-    function _TT() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _TT.__super__.constructor.apply(this, ["tt"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _TT;
+TRACK = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TRACK, args, function(){});
+};
 
-  })(XML);
+_TT = (function(superClass) {
+  extend(_TT, superClass);
 
-  TT = function() {
+  function _TT() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_TT, args, function(){});
-  };
+    _TT.__super__.constructor.apply(this, ["tt"].concat(slice.call(args)));
+  }
 
-  _U = (function(superClass) {
-    extend(_U, superClass);
+  return _TT;
 
-    function _U() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _U.__super__.constructor.apply(this, ["u"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _U;
+TT = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_TT, args, function(){});
+};
 
-  })(XML);
+_U = (function(superClass) {
+  extend(_U, superClass);
 
-  U = function() {
+  function _U() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_U, args, function(){});
-  };
+    _U.__super__.constructor.apply(this, ["u"].concat(slice.call(args)));
+  }
 
-  _UL = (function(superClass) {
-    extend(_UL, superClass);
+  return _U;
 
-    function _UL() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _UL.__super__.constructor.apply(this, ["ul"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _UL;
+U = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_U, args, function(){});
+};
 
-  })(XML);
+_UL = (function(superClass) {
+  extend(_UL, superClass);
 
-  UL = function() {
+  function _UL() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_UL, args, function(){});
-  };
+    _UL.__super__.constructor.apply(this, ["ul"].concat(slice.call(args)));
+  }
 
-  _VAR = (function(superClass) {
-    extend(_VAR, superClass);
+  return _UL;
 
-    function _VAR() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _VAR.__super__.constructor.apply(this, ["var"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _VAR;
+UL = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_UL, args, function(){});
+};
 
-  })(XML);
+_VAR = (function(superClass) {
+  extend(_VAR, superClass);
 
-  VAR = function() {
+  function _VAR() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_VAR, args, function(){});
-  };
+    _VAR.__super__.constructor.apply(this, ["var"].concat(slice.call(args)));
+  }
 
-  _VIDEO = (function(superClass) {
-    extend(_VIDEO, superClass);
+  return _VAR;
 
-    function _VIDEO() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _VIDEO.__super__.constructor.apply(this, ["video"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _VIDEO;
+VAR = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_VAR, args, function(){});
+};
 
-  })(XML);
+_VIDEO = (function(superClass) {
+  extend(_VIDEO, superClass);
 
-  VIDEO = function() {
+  function _VIDEO() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_VIDEO, args, function(){});
-  };
+    _VIDEO.__super__.constructor.apply(this, ["video"].concat(slice.call(args)));
+  }
 
-  _WBR = (function(superClass) {
-    extend(_WBR, superClass);
+  return _VIDEO;
 
-    function _WBR() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _WBR.__super__.constructor.apply(this, ["wbr/"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _WBR;
+VIDEO = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_VIDEO, args, function(){});
+};
 
-  })(XML);
+_WBR = (function(superClass) {
+  extend(_WBR, superClass);
 
-  WBR = function() {
+  function _WBR() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_WBR, args, function(){});
-  };
+    _WBR.__super__.constructor.apply(this, ["wbr/"].concat(slice.call(args)));
+  }
 
-  _XMP = (function(superClass) {
-    extend(_XMP, superClass);
+  return _WBR;
 
-    function _XMP() {
-      var args;
-      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      _XMP.__super__.constructor.apply(this, ["xmp"].concat(slice.call(args)));
-    }
+})(XML);
 
-    return _XMP;
+WBR = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_WBR, args, function(){});
+};
 
-  })(XML);
+_XMP = (function(superClass) {
+  extend(_XMP, superClass);
 
-  XMP = function() {
+  function _XMP() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    return (function(func, args, ctor) {
-      ctor.prototype = func.prototype;
-      var child = new ctor, result = func.apply(child, args);
-      return Object(result) === result ? result : child;
-    })(_XMP, args, function(){});
-  };
+    _XMP.__super__.constructor.apply(this, ["xmp"].concat(slice.call(args)));
+  }
+
+  return _XMP;
+
+})(XML);
 
-}).call(this);
+XMP = function() {
+  var args;
+  args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+  return (function(func, args, ctor) {
+    ctor.prototype = func.prototype;
+    var child = new ctor, result = func.apply(child, args);
+    return Object(result) === result ? result : child;
+  })(_XMP, args, function(){});
+};

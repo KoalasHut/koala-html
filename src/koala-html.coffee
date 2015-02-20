@@ -71,7 +71,9 @@ class XML
     values = for key, value of @attributes
       value = if type(value) is 'array' then value.join " " else value
       if value then "#{key}=\"#{value}\"" else key
-    @converted_attributes = if @attributes then " #{values.join " "}" else ""
+    # Remove ugly spacing
+    values.splice 0, 0, ""
+    @converted_attributes = if @attributes then "#{values.join " "}" else ""
 
   _convert_content: ->
     contents = for c in @content
