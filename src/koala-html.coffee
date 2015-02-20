@@ -90,6 +90,8 @@ class XML
     else if @selfclose is off
       "<#{@tag}#{@converted_attributes}>#{@converted_content}</#{@tag}>"
 
+# GENERATED TAGS
+
 class _A extends XML
   constructor: (args...) ->
     super "a", args...

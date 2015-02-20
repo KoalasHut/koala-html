@@ -4,6 +4,24 @@ Koala HTML
 Just some HTML entities to help you build a HTML response like.
 I made that inspired on web2py HTML helper, you can manipulate the elements however you like and call *.xml()* to compile it to xml.
 
+Install
+-------
+
+`bower install koala-html --save`
+
+Contribute
+----------
+
+`bower install koala-html --save`
+
+`npm install`
+
+Then you have the grunt commands:
+
+* `grunt dist` run both commands below in sequence
+* `grunt build` compile coffee file to JS
+* `grunt min` uglify generated .JS and create map file
+
 TAGs are simple functions
 -------------------------------------------------------
 
@@ -194,6 +212,17 @@ Tags with */* at the end, means self-close
 * video
 * wbr/
 * xmp
+
+If you want to change the tags, edit the tags.json file and use the generator script.
+Everything is inside *tools/tag-generator*
+
+Also delete everything in the coffee file below the comment:
+
+`# GENERATED TAGS`
+
+And run:
+
+`python generate.py`
 
 Verbosity that helps
 --------------------
