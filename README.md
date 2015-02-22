@@ -22,6 +22,11 @@ Then you have the grunt commands:
 * `grunt build` compile coffee file to JS
 * `grunt min` uglify generated .JS and create map file
 
+CDN
+---
+
+Now available on [jsDeliver](http://www.jsdelivr.com/#!koala.html)
+
 TAGs are simple functions
 -------------------------------------------------------
 
