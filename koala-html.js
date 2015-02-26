@@ -1,24 +1,73 @@
-var A, ABBR, ACRONYM, ADDRESS, APPLET, AREA, ARTICLE, ASIDE, AUDIO, B, BASE, BASEFONT, BDI, BDO, BGSOUND, BIG, BLINK, BLOCKQUOTE, BODY, BR, BUTTON, CANVAS, CAPTION, CENTER, CITE, CODE, COL, COLGROUP, CONTENT, DATA, DATALIST, DD, DECORATOR, DEL, DETAILS, DFN, DIR, DIV, DL, DT, ELEMENT, EM, EMBED, FIELDSET, FIGCAPTION, FIGURE, FONT, FOOTER, FORM, FRAME, FRAMESET, H1, H2, H3, H4, H5, H6, HEAD, HEADER, HGROUP, HR, HTML, I, IFRAME, IMG, INPUT, INS, ISINDEX, KBD, KEYGEN, LABEL, LEGEND, LI, LINK, LISTING, MAIN, MAP, MARK, MARQUEE, MENU, MENUITEM, META, METER, NAV, NOBR, NOFRAMES, NOSCRIPT, OBJECT, OL, OPTGROUP, OPTION, OUTPUT, P, PARAM, PLAINTEXT, PRE, PROGRESS, Q, RP, RT, RUBY, S, SAMP, SCRIPT, SECTION, SELECT, SHADOW, SMALL, SOURCE, SPACER, SPAN, STRIKE, STRONG, STYLE, SUB, SUMMARY, SUP, TABLE, TBODY, TD, TEMPLATE, TEXTAREA, TFOOT, TH, THEAD, TIME, TITLE, TR, TRACK, TT, U, UL, VAR, VIDEO, WBR, XML, XMP, _A, _ABBR, _ACRONYM, _ADDRESS, _APPLET, _AREA, _ARTICLE, _ASIDE, _AUDIO, _B, _BASE, _BASEFONT, _BDI, _BDO, _BGSOUND, _BIG, _BLINK, _BLOCKQUOTE, _BODY, _BR, _BUTTON, _CANVAS, _CAPTION, _CENTER, _CITE, _CODE, _COL, _COLGROUP, _CONTENT, _DATA, _DATALIST, _DD, _DECORATOR, _DEL, _DETAILS, _DFN, _DIR, _DIV, _DL, _DT, _ELEMENT, _EM, _EMBED, _FIELDSET, _FIGCAPTION, _FIGURE, _FONT, _FOOTER, _FORM, _FRAME, _FRAMESET, _H1, _H2, _H3, _H4, _H5, _H6, _HEAD, _HEADER, _HGROUP, _HR, _HTML, _I, _IFRAME, _IMG, _INPUT, _INS, _ISINDEX, _KBD, _KEYGEN, _LABEL, _LEGEND, _LI, _LINK, _LISTING, _MAIN, _MAP, _MARK, _MARQUEE, _MENU, _MENUITEM, _META, _METER, _NAV, _NOBR, _NOFRAMES, _NOSCRIPT, _OBJECT, _OL, _OPTGROUP, _OPTION, _OUTPUT, _P, _PARAM, _PLAINTEXT, _PRE, _PROGRESS, _Q, _RP, _RT, _RUBY, _S, _SAMP, _SCRIPT, _SECTION, _SELECT, _SHADOW, _SMALL, _SOURCE, _SPACER, _SPAN, _STRIKE, _STRONG, _STYLE, _SUB, _SUMMARY, _SUP, _TABLE, _TBODY, _TD, _TEMPLATE, _TEXTAREA, _TFOOT, _TH, _THEAD, _TIME, _TITLE, _TR, _TRACK, _TT, _U, _UL, _VAR, _VIDEO, _WBR, _XMP, type,
+var A, ABBR, ACRONYM, ADDRESS, APPLET, AREA, ARTICLE, ASIDE, AUDIO, B, BASE, BASEFONT, BDI, BDO, BGSOUND, BIG, BLINK, BLOCKQUOTE, BODY, BR, BUTTON, CANVAS, CAPTION, CENTER, CITE, CODE, COL, COLGROUP, CONTENT, DATA, DATALIST, DD, DECORATOR, DEL, DETAILS, DFN, DIR, DIV, DL, DT, ELEMENT, EM, EMBED, FIELDSET, FIGCAPTION, FIGURE, FONT, FOOTER, FORM, FRAME, FRAMESET, H1, H2, H3, H4, H5, H6, HEAD, HEADER, HGROUP, HR, HTML, I, IFRAME, IMG, INPUT, INS, ISINDEX, KBD, KEYGEN, LABEL, LEGEND, LI, LINK, LISTING, MAIN, MAP, MARK, MARQUEE, MAX_ARRAY_INDEX, MENU, MENUITEM, META, METER, NAV, NOBR, NOFRAMES, NOSCRIPT, OBJECT, OL, OPTGROUP, OPTION, OUTPUT, P, PARAM, PLAINTEXT, PRE, PROGRESS, Q, RP, RT, RUBY, S, SAMP, SCRIPT, SECTION, SELECT, SHADOW, SMALL, SOURCE, SPACER, SPAN, STRIKE, STRONG, STYLE, SUB, SUMMARY, SUP, TABLE, TBODY, TD, TEMPLATE, TEXTAREA, TFOOT, TH, THEAD, TIME, TITLE, TR, TRACK, TT, U, UL, VAR, VIDEO, WBR, XML, XMP, _A, _ABBR, _ACRONYM, _ADDRESS, _APPLET, _AREA, _ARTICLE, _ASIDE, _AUDIO, _B, _BASE, _BASEFONT, _BDI, _BDO, _BGSOUND, _BIG, _BLINK, _BLOCKQUOTE, _BODY, _BR, _BUTTON, _CANVAS, _CAPTION, _CENTER, _CITE, _CODE, _COL, _COLGROUP, _CONTENT, _DATA, _DATALIST, _DD, _DECORATOR, _DEL, _DETAILS, _DFN, _DIR, _DIV, _DL, _DT, _ELEMENT, _EM, _EMBED, _FIELDSET, _FIGCAPTION, _FIGURE, _FONT, _FOOTER, _FORM, _FRAME, _FRAMESET, _H1, _H2, _H3, _H4, _H5, _H6, _HEAD, _HEADER, _HGROUP, _HR, _HTML, _I, _IFRAME, _IMG, _INPUT, _INS, _ISINDEX, _KBD, _KEYGEN, _LABEL, _LEGEND, _LI, _LINK, _LISTING, _MAIN, _MAP, _MARK, _MARQUEE, _MENU, _MENUITEM, _META, _METER, _NAV, _NOBR, _NOFRAMES, _NOSCRIPT, _OBJECT, _OL, _OPTGROUP, _OPTION, _OUTPUT, _P, _PARAM, _PLAINTEXT, _PRE, _PROGRESS, _Q, _RP, _RT, _RUBY, _S, _SAMP, _SCRIPT, _SECTION, _SELECT, _SHADOW, _SMALL, _SOURCE, _SPACER, _SPAN, _STRIKE, _STRONG, _STYLE, _SUB, _SUMMARY, _SUP, _TABLE, _TBODY, _TD, _TEMPLATE, _TEXTAREA, _TFOOT, _TH, _THEAD, _TIME, _TITLE, _TR, _TRACK, _TT, _U, _UL, _VAR, _VIDEO, _WBR, _XMP, _has, _isArguments, _isArray, flatten, isArrayLike, type,
   slice = [].slice,
+  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; },
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
 
 type = function(obj) {
-  var classToType, i, len, myClass, name, ref;
+  var classToType, k, len1, myClass, name, ref;
   if (obj === void 0 || obj === null) {
     return String(obj);
   }
   classToType = new Object;
   ref = "Boolean Number String Function Array Date RegExp".split(" ");
-  for (i = 0, len = ref.length; i < len; i++) {
-    name = ref[i];
+  for (k = 0, len1 = ref.length; k < len1; k++) {
+    name = ref[k];
     classToType["[object " + name + "]"] = name.toLowerCase();
   }
   myClass = Object.prototype.toString.call(obj);
   if (myClass in classToType) {
     return classToType[myClass];
+  } else if ('callee' in obj) {
+    return String('arguments');
   }
   return "object";
+};
+
+_has = function(obj, key) {
+  return obj !== null && Object.hasOwnProperty.call(obj, key);
+};
+
+_isArguments = function(obj) {
+  return _has(obj, 'callee');
+};
+
+_isArray = function(obj) {
+  return Object().toString.call(obj) === '[object Array]';
+};
+
+MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+
+isArrayLike = function(collection) {
+  var length;
+  length = collection && collection.length;
+  return typeof length === 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
+};
+
+flatten = function(input, shallow, strict, startIndex) {
+  var i, idx, j, len, length, output, value;
+  output = [];
+  idx = 0;
+  i = startIndex || 0;
+  length = input && input.length;
+  while (i < length) {
+    value = input[i];
+    if (isArrayLike(value) && (_isArray(value) || _isArguments(value))) {
+      if (!shallow) {
+        value = flatten(value, shallow, strict);
+      }
+      j = 0;
+      len = value.length;
+      output.length += len;
+      while (j < len) {
+        output[idx++] = value[j++];
+      }
+    } else if (!strict) {
+      output[idx++] = value;
+    }
+    i++;
+  }
+  return output;
 };
 
 XML = (function() {
@@ -30,6 +79,7 @@ XML = (function() {
     this.isXMLObject = true;
     this.selfclose = false;
     this.attributes = null;
+    this.tags = [];
     ref = this.content;
     for (index in ref) {
       arg = ref[index];
@@ -50,16 +100,18 @@ XML = (function() {
   }
 
   XML.prototype.refresh = function() {
-    var c, i, key, len, ref, ref1, results, value;
+    var c, k, key, len1, ref, ref1, results, value;
+    this.content = flatten(this.content);
     ref = this.attributes;
     for (key in ref) {
       value = ref[key];
       this.create_property(key, value);
     }
+    this.clear_tags();
     ref1 = this.content;
     results = [];
-    for (i = 0, len = ref1.length; i < len; i++) {
-      c = ref1[i];
+    for (k = 0, len1 = ref1.length; k < len1; k++) {
+      c = ref1[k];
       if (type(c) === 'object') {
         results.push(this.create_tag(c.tag, c));
       }
@@ -95,15 +147,29 @@ XML = (function() {
     };
   };
 
+  XML.prototype.clear_tags = function() {
+    var k, len1, ref, results, tag;
+    ref = this.tags;
+    results = [];
+    for (k = 0, len1 = ref.length; k < len1; k++) {
+      tag = ref[k];
+      results.push(delete this[tag]);
+    }
+    return results;
+  };
+
   XML.prototype.create_tag = function(tag, xml_object) {
     if (tag in this) {
       if (type(this[tag]) === 'array') {
-        return this[tag].push(xml_object);
+        if (indexOf.call(this[tag], xml_object) < 0) {
+          return this[tag].push(xml_object);
+        }
       } else {
         return this[tag] = [this[tag], xml_object];
       }
     } else if (!(tag in this)) {
-      return this[tag] = xml_object;
+      this[tag] = xml_object;
+      return this.tags.push(tag);
     }
   };
 
@@ -131,11 +197,11 @@ XML = (function() {
   XML.prototype._convert_content = function() {
     var c, contents;
     contents = (function() {
-      var i, len, ref, results;
+      var k, len1, ref, results;
       ref = this.content;
       results = [];
-      for (i = 0, len = ref.length; i < len; i++) {
-        c = ref[i];
+      for (k = 0, len1 = ref.length; k < len1; k++) {
+        c = ref[k];
         if (type(c) === 'object') {
           results.push(c.xml());
         } else {

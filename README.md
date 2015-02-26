@@ -12,8 +12,6 @@ Install
 Contribute
 ----------
 
-`bower install koala-html --save`
-
 `npm install`
 
 Then you have the grunt commands:
@@ -67,6 +65,31 @@ console.log(el.xml());
 ```
 
 For more details on how to use append and remove pay close attention to [Splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) js function
+
+Append list of Elements
+-----------------------
+
+Remove is the same all you must do is pass the index and how many elements you want to remove
+
+```javascript
+el.div.div.append(A('W'));
+el.div.div.append([B('o'), B('r'), B('l') ,B('d')]);
+console.log(el.xml());
+```
+
+```html
+<div>H 
+    <div>ll 
+        <div>0
+            <a>W</a>
+            <b>o</b>
+            <b>r</b>
+            <b>l</b>
+            <b>d</b>
+        </div>
+    </div>
+</div> 
+```
 
 List of TAGs
 ------------

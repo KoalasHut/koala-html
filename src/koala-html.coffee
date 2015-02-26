@@ -8,7 +8,40 @@ type = (obj) ->
   myClass = Object.prototype.toString.call obj
   if myClass of classToType
     return classToType[myClass]
+  else if 'callee' of obj
+    return String 'arguments'
   return "object"
+
+# Borrowed from Underscore and converted using http://js2.coffee/
+_has = (obj, key) ->
+  obj != null and Object.hasOwnProperty.call(obj, key)
+_isArguments = (obj) ->
+  _has obj, 'callee'
+_isArray = (obj)->
+  Object().toString.call(obj) == '[object Array]'
+MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+isArrayLike = (collection) ->
+  length = collection and collection.length
+  typeof length == 'number' and length >= 0 and length <= MAX_ARRAY_INDEX
+flatten = (input, shallow, strict, startIndex) ->
+  output = []
+  idx = 0
+  i = startIndex or 0
+  length = input and input.length
+  while i < length
+    value = input[i]
+    if isArrayLike(value) and (_isArray(value) or _isArguments(value))
+      if !shallow
+        value = flatten(value, shallow, strict)
+      j = 0
+      len = value.length
+      output.length += len
+      while j < len
+        output[idx++] = value[j++]
+    else if !strict
+      output[idx++] = value
+    i++
+  output
 
 # Base class
 class XML
@@ -17,6 +50,7 @@ class XML
     @isXMLObject = true
     @selfclose = off
     @attributes = null
+    @tags = []
     
     for index, arg of @content
       if type(arg) is 'object' and 'isXMLObject' not of arg
@@ -34,7 +68,9 @@ class XML
     @refresh()
 
   refresh: ->
+    @content = flatten @content
     @create_property key, value for key, value of @attributes
+    @clear_tags()
     @create_tag c.tag, c for c in @content when type(c) is 'object'
 
   append: (obj, index) ->
@@ -58,14 +94,20 @@ class XML
       else if not v
         @attributes[key]
 
+  clear_tags: () ->
+    for tag in @tags
+      delete @[tag]
+    @tags = []
+
   create_tag: (tag, xml_object) ->
     if tag of @
       if type(@[tag]) is 'array'
-        @[tag].push xml_object
+        @[tag].push xml_object if xml_object not in @[tag]
       else
         @[tag] = [@[tag], xml_object]
     else if tag not of @
       @[tag] = xml_object
+      @tags.push tag
 
   _convert_attributes: ->
     values = for key, value of @attributes
