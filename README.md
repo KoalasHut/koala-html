@@ -25,6 +25,26 @@ CDN
 
 Now available on [jsDeliver](http://www.jsdelivr.com/#!koala.html)
 
+Update
+-------------------------------------------------------
+
+Now all tags inside 'K' domain so it won\`t conflict with Q promise library
+for example
+
+This:
+```javascript
+DIV().xml(); // => <div></div>
+DIV(A()).xml(); // => <div><a></a></div>
+```
+
+Will become this:
+```javascript
+K.DIV().xml(); // => <div></div>
+K.DIV(K.A()).xml(); // => <div><a></a></div>
+```
+
+The rest is the same, all the functions and functionalities
+
 TAGs are simple functions
 -------------------------------------------------------
 
@@ -45,12 +65,12 @@ console.log(el.xml());
 ```
 
 ```html
-<div>H 
+<div>H
     <div>e</div>
-    <div>ll 
+    <div>ll
         <div>0</div>
     </div>
-</div> 
+</div>
 ```
 
 Remove is the same all you must do is pass the index and how many elements you want to remove
@@ -62,11 +82,11 @@ console.log(el.xml());
 ```
 
 ```html
-<div>H 
-    <div>ll 
+<div>H
+    <div>ll
         <div>0</div>
     </div>
-</div> 
+</div>
 ```
 
 For more details on how to use append and remove pay close attention to [Splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) js function
@@ -83,8 +103,8 @@ console.log(el.xml());
 ```
 
 ```html
-<div>H 
-    <div>ll 
+<div>H
+    <div>ll
         <div>0
             <a>W</a>
             <b>o</b>
@@ -93,7 +113,7 @@ console.log(el.xml());
             <b>d</b>
         </div>
     </div>
-</div> 
+</div>
 ```
 
 List of TAGs
@@ -277,7 +297,7 @@ and identifiers to pick the exact element, that's the why we mapped them
 
 ```javascript
 // Create
-var structure = 
+var structure =
     DIV({class: 'row'},
         DIV({class: 'col'},
             IMG({src: '', width: 30, alt: ''})
@@ -311,7 +331,7 @@ I thougth so
 The Future
 ==========
 
- - Change render form: from string nodes to DOM 
+ - Change render form: from string nodes to DOM
 
 
 Considerations

@@ -1,4 +1,4 @@
-var A, ABBR, ACRONYM, ADDRESS, APPLET, AREA, ARTICLE, ASIDE, AUDIO, B, BASE, BASEFONT, BDI, BDO, BGSOUND, BIG, BLINK, BLOCKQUOTE, BODY, BR, BUTTON, CANVAS, CAPTION, CENTER, CITE, CODE, COL, COLGROUP, CONTENT, DATA, DATALIST, DD, DECORATOR, DEL, DETAILS, DFN, DIR, DIV, DL, DT, ELEMENT, EM, EMBED, FIELDSET, FIGCAPTION, FIGURE, FONT, FOOTER, FORM, FRAME, FRAMESET, H1, H2, H3, H4, H5, H6, HEAD, HEADER, HGROUP, HR, HTML, I, IFRAME, IMG, INPUT, INS, ISINDEX, KBD, KEYGEN, LABEL, LEGEND, LI, LINK, LISTING, MAIN, MAP, MARK, MARQUEE, MAX_ARRAY_INDEX, MENU, MENUITEM, META, METER, NAV, NOBR, NOFRAMES, NOSCRIPT, OBJECT, OL, OPTGROUP, OPTION, OUTPUT, P, PARAM, PLAINTEXT, PRE, PROGRESS, Q, RP, RT, RUBY, S, SAMP, SCRIPT, SECTION, SELECT, SHADOW, SMALL, SOURCE, SPACER, SPAN, STRIKE, STRONG, STYLE, SUB, SUMMARY, SUP, TABLE, TBODY, TD, TEMPLATE, TEXTAREA, TFOOT, TH, THEAD, TIME, TITLE, TR, TRACK, TT, U, UL, VAR, VIDEO, WBR, XML, XMP, _A, _ABBR, _ACRONYM, _ADDRESS, _APPLET, _AREA, _ARTICLE, _ASIDE, _AUDIO, _B, _BASE, _BASEFONT, _BDI, _BDO, _BGSOUND, _BIG, _BLINK, _BLOCKQUOTE, _BODY, _BR, _BUTTON, _CANVAS, _CAPTION, _CENTER, _CITE, _CODE, _COL, _COLGROUP, _CONTENT, _DATA, _DATALIST, _DD, _DECORATOR, _DEL, _DETAILS, _DFN, _DIR, _DIV, _DL, _DT, _ELEMENT, _EM, _EMBED, _FIELDSET, _FIGCAPTION, _FIGURE, _FONT, _FOOTER, _FORM, _FRAME, _FRAMESET, _H1, _H2, _H3, _H4, _H5, _H6, _HEAD, _HEADER, _HGROUP, _HR, _HTML, _I, _IFRAME, _IMG, _INPUT, _INS, _ISINDEX, _KBD, _KEYGEN, _LABEL, _LEGEND, _LI, _LINK, _LISTING, _MAIN, _MAP, _MARK, _MARQUEE, _MENU, _MENUITEM, _META, _METER, _NAV, _NOBR, _NOFRAMES, _NOSCRIPT, _OBJECT, _OL, _OPTGROUP, _OPTION, _OUTPUT, _P, _PARAM, _PLAINTEXT, _PRE, _PROGRESS, _Q, _RP, _RT, _RUBY, _S, _SAMP, _SCRIPT, _SECTION, _SELECT, _SHADOW, _SMALL, _SOURCE, _SPACER, _SPAN, _STRIKE, _STRONG, _STYLE, _SUB, _SUMMARY, _SUP, _TABLE, _TBODY, _TD, _TEMPLATE, _TEXTAREA, _TFOOT, _TH, _THEAD, _TIME, _TITLE, _TR, _TRACK, _TT, _U, _UL, _VAR, _VIDEO, _WBR, _XMP, _has, _isArguments, _isArray, flatten, isArrayLike, type,
+var K, MAX_ARRAY_INDEX, XML, _A, _ABBR, _ACRONYM, _ADDRESS, _APPLET, _AREA, _ARTICLE, _ASIDE, _AUDIO, _B, _BASE, _BASEFONT, _BDI, _BDO, _BGSOUND, _BIG, _BLINK, _BLOCKQUOTE, _BODY, _BR, _BUTTON, _CANVAS, _CAPTION, _CENTER, _CITE, _CODE, _COL, _COLGROUP, _CONTENT, _DATA, _DATALIST, _DD, _DECORATOR, _DEL, _DETAILS, _DFN, _DIR, _DIV, _DL, _DT, _ELEMENT, _EM, _EMBED, _FIELDSET, _FIGCAPTION, _FIGURE, _FONT, _FOOTER, _FORM, _FRAME, _FRAMESET, _H1, _H2, _H3, _H4, _H5, _H6, _HEAD, _HEADER, _HGROUP, _HR, _HTML, _I, _IFRAME, _IMG, _INPUT, _INS, _ISINDEX, _KBD, _KEYGEN, _LABEL, _LEGEND, _LI, _LINK, _LISTING, _MAIN, _MAP, _MARK, _MARQUEE, _MENU, _MENUITEM, _META, _METER, _NAV, _NOBR, _NOFRAMES, _NOSCRIPT, _OBJECT, _OL, _OPTGROUP, _OPTION, _OUTPUT, _P, _PARAM, _PLAINTEXT, _PRE, _PROGRESS, _Q, _RP, _RT, _RUBY, _S, _SAMP, _SCRIPT, _SECTION, _SELECT, _SHADOW, _SMALL, _SOURCE, _SPACER, _SPAN, _STRIKE, _STRONG, _STYLE, _SUB, _SUMMARY, _SUP, _TABLE, _TBODY, _TD, _TEMPLATE, _TEXTAREA, _TFOOT, _TH, _THEAD, _TIME, _TITLE, _TR, _TRACK, _TT, _U, _UL, _VAR, _VIDEO, _WBR, _XMP, _has, _isArguments, _isArray, flatten, isArrayLike, type,
   slice = [].slice,
   indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; },
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -148,14 +148,13 @@ XML = (function() {
   };
 
   XML.prototype.clear_tags = function() {
-    var k, len1, ref, results, tag;
+    var k, len1, ref, tag;
     ref = this.tags;
-    results = [];
     for (k = 0, len1 = ref.length; k < len1; k++) {
       tag = ref[k];
-      results.push(delete this[tag]);
+      delete this[tag];
     }
-    return results;
+    return this.tags = [];
   };
 
   XML.prototype.create_tag = function(tag, xml_object) {
@@ -227,6 +226,8 @@ XML = (function() {
 
 })();
 
+K = {};
+
 _A = (function(superClass) {
   extend(_A, superClass);
 
@@ -240,7 +241,7 @@ _A = (function(superClass) {
 
 })(XML);
 
-A = function() {
+K.A = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -263,7 +264,7 @@ _ABBR = (function(superClass) {
 
 })(XML);
 
-ABBR = function() {
+K.ABBR = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -286,7 +287,7 @@ _ACRONYM = (function(superClass) {
 
 })(XML);
 
-ACRONYM = function() {
+K.ACRONYM = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -309,7 +310,7 @@ _ADDRESS = (function(superClass) {
 
 })(XML);
 
-ADDRESS = function() {
+K.ADDRESS = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -332,7 +333,7 @@ _APPLET = (function(superClass) {
 
 })(XML);
 
-APPLET = function() {
+K.APPLET = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -355,7 +356,7 @@ _AREA = (function(superClass) {
 
 })(XML);
 
-AREA = function() {
+K.AREA = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -378,7 +379,7 @@ _ARTICLE = (function(superClass) {
 
 })(XML);
 
-ARTICLE = function() {
+K.ARTICLE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -401,7 +402,7 @@ _ASIDE = (function(superClass) {
 
 })(XML);
 
-ASIDE = function() {
+K.ASIDE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -424,7 +425,7 @@ _AUDIO = (function(superClass) {
 
 })(XML);
 
-AUDIO = function() {
+K.AUDIO = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -447,7 +448,7 @@ _B = (function(superClass) {
 
 })(XML);
 
-B = function() {
+K.B = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -470,7 +471,7 @@ _BASE = (function(superClass) {
 
 })(XML);
 
-BASE = function() {
+K.BASE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -493,7 +494,7 @@ _BASEFONT = (function(superClass) {
 
 })(XML);
 
-BASEFONT = function() {
+K.BASEFONT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -516,7 +517,7 @@ _BDI = (function(superClass) {
 
 })(XML);
 
-BDI = function() {
+K.BDI = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -539,7 +540,7 @@ _BDO = (function(superClass) {
 
 })(XML);
 
-BDO = function() {
+K.BDO = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -562,7 +563,7 @@ _BGSOUND = (function(superClass) {
 
 })(XML);
 
-BGSOUND = function() {
+K.BGSOUND = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -585,7 +586,7 @@ _BIG = (function(superClass) {
 
 })(XML);
 
-BIG = function() {
+K.BIG = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -608,7 +609,7 @@ _BLINK = (function(superClass) {
 
 })(XML);
 
-BLINK = function() {
+K.BLINK = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -631,7 +632,7 @@ _BLOCKQUOTE = (function(superClass) {
 
 })(XML);
 
-BLOCKQUOTE = function() {
+K.BLOCKQUOTE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -654,7 +655,7 @@ _BODY = (function(superClass) {
 
 })(XML);
 
-BODY = function() {
+K.BODY = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -677,7 +678,7 @@ _BR = (function(superClass) {
 
 })(XML);
 
-BR = function() {
+K.BR = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -700,7 +701,7 @@ _BUTTON = (function(superClass) {
 
 })(XML);
 
-BUTTON = function() {
+K.BUTTON = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -723,7 +724,7 @@ _CANVAS = (function(superClass) {
 
 })(XML);
 
-CANVAS = function() {
+K.CANVAS = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -746,7 +747,7 @@ _CAPTION = (function(superClass) {
 
 })(XML);
 
-CAPTION = function() {
+K.CAPTION = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -769,7 +770,7 @@ _CENTER = (function(superClass) {
 
 })(XML);
 
-CENTER = function() {
+K.CENTER = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -792,7 +793,7 @@ _CITE = (function(superClass) {
 
 })(XML);
 
-CITE = function() {
+K.CITE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -815,7 +816,7 @@ _CODE = (function(superClass) {
 
 })(XML);
 
-CODE = function() {
+K.CODE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -838,7 +839,7 @@ _COL = (function(superClass) {
 
 })(XML);
 
-COL = function() {
+K.COL = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -861,7 +862,7 @@ _COLGROUP = (function(superClass) {
 
 })(XML);
 
-COLGROUP = function() {
+K.COLGROUP = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -884,7 +885,7 @@ _CONTENT = (function(superClass) {
 
 })(XML);
 
-CONTENT = function() {
+K.CONTENT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -907,7 +908,7 @@ _DATA = (function(superClass) {
 
 })(XML);
 
-DATA = function() {
+K.DATA = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -930,7 +931,7 @@ _DATALIST = (function(superClass) {
 
 })(XML);
 
-DATALIST = function() {
+K.DATALIST = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -953,7 +954,7 @@ _DD = (function(superClass) {
 
 })(XML);
 
-DD = function() {
+K.DD = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -976,7 +977,7 @@ _DECORATOR = (function(superClass) {
 
 })(XML);
 
-DECORATOR = function() {
+K.DECORATOR = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -999,7 +1000,7 @@ _DEL = (function(superClass) {
 
 })(XML);
 
-DEL = function() {
+K.DEL = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1022,7 +1023,7 @@ _DETAILS = (function(superClass) {
 
 })(XML);
 
-DETAILS = function() {
+K.DETAILS = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1045,7 +1046,7 @@ _DFN = (function(superClass) {
 
 })(XML);
 
-DFN = function() {
+K.DFN = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1068,7 +1069,7 @@ _DIR = (function(superClass) {
 
 })(XML);
 
-DIR = function() {
+K.DIR = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1091,7 +1092,7 @@ _DIV = (function(superClass) {
 
 })(XML);
 
-DIV = function() {
+K.DIV = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1114,7 +1115,7 @@ _DL = (function(superClass) {
 
 })(XML);
 
-DL = function() {
+K.DL = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1137,7 +1138,7 @@ _DT = (function(superClass) {
 
 })(XML);
 
-DT = function() {
+K.DT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1160,7 +1161,7 @@ _ELEMENT = (function(superClass) {
 
 })(XML);
 
-ELEMENT = function() {
+K.ELEMENT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1183,7 +1184,7 @@ _EM = (function(superClass) {
 
 })(XML);
 
-EM = function() {
+K.EM = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1206,7 +1207,7 @@ _EMBED = (function(superClass) {
 
 })(XML);
 
-EMBED = function() {
+K.EMBED = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1229,7 +1230,7 @@ _FIELDSET = (function(superClass) {
 
 })(XML);
 
-FIELDSET = function() {
+K.FIELDSET = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1252,7 +1253,7 @@ _FIGCAPTION = (function(superClass) {
 
 })(XML);
 
-FIGCAPTION = function() {
+K.FIGCAPTION = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1275,7 +1276,7 @@ _FIGURE = (function(superClass) {
 
 })(XML);
 
-FIGURE = function() {
+K.FIGURE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1298,7 +1299,7 @@ _FONT = (function(superClass) {
 
 })(XML);
 
-FONT = function() {
+K.FONT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1321,7 +1322,7 @@ _FOOTER = (function(superClass) {
 
 })(XML);
 
-FOOTER = function() {
+K.FOOTER = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1344,7 +1345,7 @@ _FORM = (function(superClass) {
 
 })(XML);
 
-FORM = function() {
+K.FORM = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1367,7 +1368,7 @@ _FRAME = (function(superClass) {
 
 })(XML);
 
-FRAME = function() {
+K.FRAME = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1390,7 +1391,7 @@ _FRAMESET = (function(superClass) {
 
 })(XML);
 
-FRAMESET = function() {
+K.FRAMESET = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1413,7 +1414,7 @@ _H1 = (function(superClass) {
 
 })(XML);
 
-H1 = function() {
+K.H1 = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1436,7 +1437,7 @@ _H2 = (function(superClass) {
 
 })(XML);
 
-H2 = function() {
+K.H2 = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1459,7 +1460,7 @@ _H3 = (function(superClass) {
 
 })(XML);
 
-H3 = function() {
+K.H3 = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1482,7 +1483,7 @@ _H4 = (function(superClass) {
 
 })(XML);
 
-H4 = function() {
+K.H4 = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1505,7 +1506,7 @@ _H5 = (function(superClass) {
 
 })(XML);
 
-H5 = function() {
+K.H5 = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1528,7 +1529,7 @@ _H6 = (function(superClass) {
 
 })(XML);
 
-H6 = function() {
+K.H6 = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1551,7 +1552,7 @@ _HEAD = (function(superClass) {
 
 })(XML);
 
-HEAD = function() {
+K.HEAD = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1574,7 +1575,7 @@ _HEADER = (function(superClass) {
 
 })(XML);
 
-HEADER = function() {
+K.HEADER = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1597,7 +1598,7 @@ _HGROUP = (function(superClass) {
 
 })(XML);
 
-HGROUP = function() {
+K.HGROUP = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1620,7 +1621,7 @@ _HR = (function(superClass) {
 
 })(XML);
 
-HR = function() {
+K.HR = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1643,7 +1644,7 @@ _HTML = (function(superClass) {
 
 })(XML);
 
-HTML = function() {
+K.HTML = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1666,7 +1667,7 @@ _I = (function(superClass) {
 
 })(XML);
 
-I = function() {
+K.I = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1689,7 +1690,7 @@ _IFRAME = (function(superClass) {
 
 })(XML);
 
-IFRAME = function() {
+K.IFRAME = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1712,7 +1713,7 @@ _IMG = (function(superClass) {
 
 })(XML);
 
-IMG = function() {
+K.IMG = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1735,7 +1736,7 @@ _INPUT = (function(superClass) {
 
 })(XML);
 
-INPUT = function() {
+K.INPUT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1758,7 +1759,7 @@ _INS = (function(superClass) {
 
 })(XML);
 
-INS = function() {
+K.INS = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1781,7 +1782,7 @@ _ISINDEX = (function(superClass) {
 
 })(XML);
 
-ISINDEX = function() {
+K.ISINDEX = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1804,7 +1805,7 @@ _KBD = (function(superClass) {
 
 })(XML);
 
-KBD = function() {
+K.KBD = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1827,7 +1828,7 @@ _KEYGEN = (function(superClass) {
 
 })(XML);
 
-KEYGEN = function() {
+K.KEYGEN = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1850,7 +1851,7 @@ _LABEL = (function(superClass) {
 
 })(XML);
 
-LABEL = function() {
+K.LABEL = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1873,7 +1874,7 @@ _LEGEND = (function(superClass) {
 
 })(XML);
 
-LEGEND = function() {
+K.LEGEND = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1896,7 +1897,7 @@ _LI = (function(superClass) {
 
 })(XML);
 
-LI = function() {
+K.LI = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1919,7 +1920,7 @@ _LINK = (function(superClass) {
 
 })(XML);
 
-LINK = function() {
+K.LINK = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1942,7 +1943,7 @@ _LISTING = (function(superClass) {
 
 })(XML);
 
-LISTING = function() {
+K.LISTING = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1965,7 +1966,7 @@ _MAIN = (function(superClass) {
 
 })(XML);
 
-MAIN = function() {
+K.MAIN = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -1988,7 +1989,7 @@ _MAP = (function(superClass) {
 
 })(XML);
 
-MAP = function() {
+K.MAP = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2011,7 +2012,7 @@ _MARK = (function(superClass) {
 
 })(XML);
 
-MARK = function() {
+K.MARK = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2034,7 +2035,7 @@ _MARQUEE = (function(superClass) {
 
 })(XML);
 
-MARQUEE = function() {
+K.MARQUEE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2057,7 +2058,7 @@ _MENU = (function(superClass) {
 
 })(XML);
 
-MENU = function() {
+K.MENU = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2080,7 +2081,7 @@ _MENUITEM = (function(superClass) {
 
 })(XML);
 
-MENUITEM = function() {
+K.MENUITEM = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2103,7 +2104,7 @@ _META = (function(superClass) {
 
 })(XML);
 
-META = function() {
+K.META = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2126,7 +2127,7 @@ _METER = (function(superClass) {
 
 })(XML);
 
-METER = function() {
+K.METER = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2149,7 +2150,7 @@ _NAV = (function(superClass) {
 
 })(XML);
 
-NAV = function() {
+K.NAV = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2172,7 +2173,7 @@ _NOBR = (function(superClass) {
 
 })(XML);
 
-NOBR = function() {
+K.NOBR = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2195,7 +2196,7 @@ _NOFRAMES = (function(superClass) {
 
 })(XML);
 
-NOFRAMES = function() {
+K.NOFRAMES = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2218,7 +2219,7 @@ _NOSCRIPT = (function(superClass) {
 
 })(XML);
 
-NOSCRIPT = function() {
+K.NOSCRIPT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2241,7 +2242,7 @@ _OBJECT = (function(superClass) {
 
 })(XML);
 
-OBJECT = function() {
+K.OBJECT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2264,7 +2265,7 @@ _OL = (function(superClass) {
 
 })(XML);
 
-OL = function() {
+K.OL = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2287,7 +2288,7 @@ _OPTGROUP = (function(superClass) {
 
 })(XML);
 
-OPTGROUP = function() {
+K.OPTGROUP = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2310,7 +2311,7 @@ _OPTION = (function(superClass) {
 
 })(XML);
 
-OPTION = function() {
+K.OPTION = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2333,7 +2334,7 @@ _OUTPUT = (function(superClass) {
 
 })(XML);
 
-OUTPUT = function() {
+K.OUTPUT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2356,7 +2357,7 @@ _P = (function(superClass) {
 
 })(XML);
 
-P = function() {
+K.P = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2379,7 +2380,7 @@ _PARAM = (function(superClass) {
 
 })(XML);
 
-PARAM = function() {
+K.PARAM = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2402,7 +2403,7 @@ _PLAINTEXT = (function(superClass) {
 
 })(XML);
 
-PLAINTEXT = function() {
+K.PLAINTEXT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2425,7 +2426,7 @@ _PRE = (function(superClass) {
 
 })(XML);
 
-PRE = function() {
+K.PRE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2448,7 +2449,7 @@ _PROGRESS = (function(superClass) {
 
 })(XML);
 
-PROGRESS = function() {
+K.PROGRESS = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2471,7 +2472,7 @@ _Q = (function(superClass) {
 
 })(XML);
 
-Q = function() {
+K.Q = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2494,7 +2495,7 @@ _RP = (function(superClass) {
 
 })(XML);
 
-RP = function() {
+K.RP = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2517,7 +2518,7 @@ _RT = (function(superClass) {
 
 })(XML);
 
-RT = function() {
+K.RT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2540,7 +2541,7 @@ _RUBY = (function(superClass) {
 
 })(XML);
 
-RUBY = function() {
+K.RUBY = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2563,7 +2564,7 @@ _S = (function(superClass) {
 
 })(XML);
 
-S = function() {
+K.S = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2586,7 +2587,7 @@ _SAMP = (function(superClass) {
 
 })(XML);
 
-SAMP = function() {
+K.SAMP = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2609,7 +2610,7 @@ _SCRIPT = (function(superClass) {
 
 })(XML);
 
-SCRIPT = function() {
+K.SCRIPT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2632,7 +2633,7 @@ _SECTION = (function(superClass) {
 
 })(XML);
 
-SECTION = function() {
+K.SECTION = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2655,7 +2656,7 @@ _SELECT = (function(superClass) {
 
 })(XML);
 
-SELECT = function() {
+K.SELECT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2678,7 +2679,7 @@ _SHADOW = (function(superClass) {
 
 })(XML);
 
-SHADOW = function() {
+K.SHADOW = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2701,7 +2702,7 @@ _SMALL = (function(superClass) {
 
 })(XML);
 
-SMALL = function() {
+K.SMALL = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2724,7 +2725,7 @@ _SOURCE = (function(superClass) {
 
 })(XML);
 
-SOURCE = function() {
+K.SOURCE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2747,7 +2748,7 @@ _SPACER = (function(superClass) {
 
 })(XML);
 
-SPACER = function() {
+K.SPACER = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2770,7 +2771,7 @@ _SPAN = (function(superClass) {
 
 })(XML);
 
-SPAN = function() {
+K.SPAN = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2793,7 +2794,7 @@ _STRIKE = (function(superClass) {
 
 })(XML);
 
-STRIKE = function() {
+K.STRIKE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2816,7 +2817,7 @@ _STRONG = (function(superClass) {
 
 })(XML);
 
-STRONG = function() {
+K.STRONG = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2839,7 +2840,7 @@ _STYLE = (function(superClass) {
 
 })(XML);
 
-STYLE = function() {
+K.STYLE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2862,7 +2863,7 @@ _SUB = (function(superClass) {
 
 })(XML);
 
-SUB = function() {
+K.SUB = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2885,7 +2886,7 @@ _SUMMARY = (function(superClass) {
 
 })(XML);
 
-SUMMARY = function() {
+K.SUMMARY = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2908,7 +2909,7 @@ _SUP = (function(superClass) {
 
 })(XML);
 
-SUP = function() {
+K.SUP = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2931,7 +2932,7 @@ _TABLE = (function(superClass) {
 
 })(XML);
 
-TABLE = function() {
+K.TABLE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2954,7 +2955,7 @@ _TBODY = (function(superClass) {
 
 })(XML);
 
-TBODY = function() {
+K.TBODY = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -2977,7 +2978,7 @@ _TD = (function(superClass) {
 
 })(XML);
 
-TD = function() {
+K.TD = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3000,7 +3001,7 @@ _TEMPLATE = (function(superClass) {
 
 })(XML);
 
-TEMPLATE = function() {
+K.TEMPLATE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3023,7 +3024,7 @@ _TEXTAREA = (function(superClass) {
 
 })(XML);
 
-TEXTAREA = function() {
+K.TEXTAREA = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3046,7 +3047,7 @@ _TFOOT = (function(superClass) {
 
 })(XML);
 
-TFOOT = function() {
+K.TFOOT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3069,7 +3070,7 @@ _TH = (function(superClass) {
 
 })(XML);
 
-TH = function() {
+K.TH = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3092,7 +3093,7 @@ _THEAD = (function(superClass) {
 
 })(XML);
 
-THEAD = function() {
+K.THEAD = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3115,7 +3116,7 @@ _TIME = (function(superClass) {
 
 })(XML);
 
-TIME = function() {
+K.TIME = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3138,7 +3139,7 @@ _TITLE = (function(superClass) {
 
 })(XML);
 
-TITLE = function() {
+K.TITLE = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3161,7 +3162,7 @@ _TR = (function(superClass) {
 
 })(XML);
 
-TR = function() {
+K.TR = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3184,7 +3185,7 @@ _TRACK = (function(superClass) {
 
 })(XML);
 
-TRACK = function() {
+K.TRACK = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3207,7 +3208,7 @@ _TT = (function(superClass) {
 
 })(XML);
 
-TT = function() {
+K.TT = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3230,7 +3231,7 @@ _U = (function(superClass) {
 
 })(XML);
 
-U = function() {
+K.U = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3253,7 +3254,7 @@ _UL = (function(superClass) {
 
 })(XML);
 
-UL = function() {
+K.UL = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3276,7 +3277,7 @@ _VAR = (function(superClass) {
 
 })(XML);
 
-VAR = function() {
+K.VAR = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3299,7 +3300,7 @@ _VIDEO = (function(superClass) {
 
 })(XML);
 
-VIDEO = function() {
+K.VIDEO = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3322,7 +3323,7 @@ _WBR = (function(superClass) {
 
 })(XML);
 
-WBR = function() {
+K.WBR = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {
@@ -3345,7 +3346,7 @@ _XMP = (function(superClass) {
 
 })(XML);
 
-XMP = function() {
+K.XMP = function() {
   var args;
   args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
   return (function(func, args, ctor) {

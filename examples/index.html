@@ -10,28 +10,28 @@
     <script type="text/javascript">
 
         // First test
-        var el = DIV('H');
-        el.append(DIV('e'));
-        el.append(DIV('ll'));
-        el.div[2].append(DIV('0'));
+        var el = K.DIV('H');
+        el.append(K.DIV('e'));
+        el.append(K.DIV('ll'));
+        el.div[1].append(K.DIV('0'));
         console.log('[first test]');
         console.log(el);
         console.log(el.xml());
 
         //Second test
-        var el = DIV('H');
-        el.append(DIV('e')); // Insert a div inside el
-        el.append(DIV('ll')); // Insert another div in the end
-        el.remove(1); // Remove element at Index 1 [in this case is 'e']
+        var el = K.DIV('H');
+        el.append(K.DIV('e')); // Insert a div inside el
+        el.append(K.DIV('ll')); // Insert another div in the end
+        el.remove(0); // Remove element at Index 1 [in this case is 'e']
         // Our content was ['h', div, div] remenber that raw text is also one element
         console.log('[second test]');
         console.log(el);
         console.log(el.xml());
-        
+
         // Third Test
-        var el = DIV({id: 'i-accept-array-as-argument'}, [A(), A()], DIV());
-        el.append(HR());
-        el.append([LABEL(), INPUT()]);
+        var el = K.DIV({id: 'I-accept-array-as-argument'}, [K.A(), K.A()], K.DIV());
+        el.append(K.HR());
+        el.append([K.LABEL(), K.INPUT()]);
         console.log('[third test]');
         console.log(el);
         console.log(el.xml());
@@ -39,20 +39,20 @@
 
         var body = document.getElementsByTagName('body')[0];
         // Create
-        var header = DIV({
+        var header = K.DIV({
             class: ['class1', 'class2', 'class3'],
             id: 'first'},
-            H2('Header!'),
-            P('A paragraph...'));
+            K.H2('Header!'),
+            K.P('A paragraph...'));
         // Edit
         header.content[1].attributes['class'] = ['class1', 'class2', 'class3', 'class4'];
         // Print
         body.innerHTML = header.xml();
         // Edit again
-        var content = DIV({
+        var content = K.DIV({
             id: 'content',
             class: ['twelve', 'columns', 'panel']},
-            P('Content Text')
+            K.P('Content Text')
         );
         header.content.push(content);
 
